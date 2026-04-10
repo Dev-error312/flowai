@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-syne: 'Syne', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-dm-mono: 'DM Mono', monospace;
+
+  /* Brand */
+  --brand: #14b8a6;
+  --brand-light: #99f6df;
+  --brand-dark: #0d9488;
+
+  /* Surfaces */
+  --surface-0: #ffffff;
+  --surface-50: #f8fafb;
+  --surface-100: #f1f4f6;
+  --surface-200: #e5eaed;
+  --surface-800: #1e2830;
+  --surface-900: #111820;
+
+  /* Text */
+  --text-primary: #111820;
+  --text-secondary: #465662;
+  --text-tertiary: #9aaab4;
+  --text-inverse: #ffffff;
+
+  /* Semantic */
+  --positive: #22c55e;
+  --negative: #f43f5e;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+
+  /* Spacing */
+  --nav-width: 240px;
+  --header-height: 64px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-dm-sans), sans-serif;
+  background-color: var(--surface-50);
+  color: var(--text-primary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface-200); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--surface-300); }
+
+/* Selection */
+::selection { background: rgba(20, 184, 166, 0.15); color: var(--text-primary); }
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Animations */
+.animate-in { animation: fadeIn 0.35s ease-out both; }
+.slide-up { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-100) 25%, var(--surface-200) 50%, var(--surface-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Recharts custom styles */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: var(--surface-0) !important;
+  border: 1px solid var(--surface-200) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+  font-family: var(--font-dm-sans) !important;
+  font-size: 13px !important;
+}
+
+/* Custom chart tooltip */
+.chart-tooltip {
+  background: white;
+  border: 1px solid #e5eaed;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  font-family: var(--font-dm-sans);
+}
+
+/* Prose for AI messages */
+.prose-ai p { margin-bottom: 0.75rem; line-height: 1.7; }
+.prose-ai p:last-child { margin-bottom: 0; }
+.prose-ai strong { font-weight: 500; color: var(--text-primary); }
+.prose-ai ul { list-style: none; padding-left: 0; }
+.prose-ai ul li { padding: 3px 0; padding-left: 1.2rem; position: relative; }
+.prose-ai ul li::before { content: '→'; position: absolute; left: 0; color: var(--brand); }
+
+/* Number formatting — use tabular numbers */
+.num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.badge-positive { background: #f0fdf4; color: #15803d; }
+.badge-negative { background: #fff1f2; color: #be123c; }
+.badge-neutral  { background: #f1f4f6; color: #465662; }
+.badge-brand    { background: #f0fdf9; color: #0f766e; }
+.badge-warning  { background: #fffbeb; color: #b45309; }
