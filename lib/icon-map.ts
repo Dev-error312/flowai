@@ -21,6 +21,15 @@ import {
   BookOpen,
   CreditCard,
   Bell,
+  Car,
+  Utensils,
+  Heart,
+  ShoppingBag,
+  Briefcase,
+  Mail,
+  Pencil,
+  PartyPopper,
+  TrendingDown,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -37,10 +46,13 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   messageCircle: MessageCircle,
   brain: Brain,
   bell: Bell,
+  pencil: Pencil,
+  mail: Mail,
   
   // Financial Icons
   dollarSign: DollarSign,
   trendingUp: TrendingUp,
+  trendingDown: TrendingDown,
   barChart: BarChart3,
   eye: Eye,
   gift: Gift,
@@ -53,6 +65,7 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   
   // Brand/Marketing Icons
   rocket: Rocket,
+  partyPopper: PartyPopper,
   
   // Goal/Planning Icons
   shield: Shield,
@@ -60,6 +73,13 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   home: Home,
   umbrella: Umbrella,
   book: BookOpen,
+  
+  // Category Icons
+  utensils: Utensils,
+  car: Car,
+  heart: Heart,
+  shoppingBag: ShoppingBag,
+  briefcase: Briefcase,
 }
 
 /**

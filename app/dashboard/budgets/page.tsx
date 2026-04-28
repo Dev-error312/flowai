@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { MOCK_BUDGETS, MOCK_CATEGORIES } from '@/lib/mock-data'
 import { formatCurrency, getBudgetColor } from '@/lib/utils'
+import { getIcon } from '@/lib/icon-map'
 import type { Budget } from '@/types'
 
 function BudgetBar({ budget }: { budget: Budget }) {
@@ -14,7 +15,10 @@ function BudgetBar({ budget }: { budget: Budget }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ width: '36px', height: '36px', borderRadius: '9px', background: (budget.category?.color ?? '#9aaab4') + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>
-            {budget.category?.icon}
+            {(() => {
+              const Icon = getIcon(budget.category?.icon)
+              return Icon ? <Icon size={18} /> : null
+            })()}
           </div>
           <div>
             <div style={{ fontWeight: 500, fontSize: '14px', color: '#111820' }}>{budget.category?.name}</div>
@@ -96,7 +100,7 @@ function AddBudgetModal({ onClose, onAdd }: { onClose: () => void; onAdd: (b: Pa
             <label style={labelStyle}>Category</label>
             <select value={form.category_id} onChange={e => setForm(f => ({ ...f, category_id: e.target.value }))} style={inputStyle}>
               {MOCK_CATEGORIES.filter(c => c.type === 'expense').map(c => (
-                <option key={c.id} value={c.id}>{c.icon} {c.name}</option>
+                <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
           </div>

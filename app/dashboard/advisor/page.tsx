@@ -64,7 +64,7 @@ export default function AdvisorPage() {
     {
       id: 'welcome',
       role: 'assistant',
-      content: "Hi Alex! I'm your AI financial advisor, powered by Claude. I have access to your complete financial picture — your accounts, spending, investments, and goals.\n\nI noticed a few things worth discussing:\n\n→ Your shopping budget is **89% over** this month ($565 vs $300 target)\n→ Your crypto allocation has grown to **15.8%** of your portfolio — above typical targets\n→ You're just **$5,200 away** from your emergency fund goal 🎉\n\nWhat would you like to work through today?",
+      content: "Hi Alex! I'm your AI financial advisor, powered by Claude. I have access to your complete financial picture — your accounts, spending, investments, and goals.\n\nI noticed a few things worth discussing:\n\n→ Your shopping budget is **89% over** this month ($565 vs $300 target)\n→ Your crypto allocation has grown to **15.8%** of your portfolio — above typical targets\n→ You're just **$5,200 away** from your emergency fund goal!\n\nWhat would you like to work through today?",
       timestamp: new Date(),
     }
   ])

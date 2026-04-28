@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { getIcon } from '@/lib/icon-map'
 import { MOCK_GOALS } from '@/lib/mock-data'
 import { formatCurrency, formatDate } from '@/lib/utils'
 import type { Goal } from '@/types'
@@ -29,7 +30,10 @@ function GoalCard({ goal }: { goal: Goal }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{ width: '48px', height: '48px', borderRadius: '12px', background: c.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px' }}>
-            {goal.icon}
+            {(() => {
+              const Icon = getIcon(goal.icon)
+              return Icon ? <Icon size={32} /> : null
+            })()}
           </div>
           <div>
             <div style={{ fontWeight: 600, fontSize: '15px', color: '#111820' }}>{goal.name}</div>
@@ -93,12 +97,12 @@ function NewGoalModal({ onClose, onAdd }: { onClose: () => void; onAdd: (g: Goal
   })
 
   const GOAL_CATEGORIES = [
-    { value: 'emergency', label: '🛡️ Emergency Fund', icon: '🛡️' },
-    { value: 'vacation',  label: '✈️ Vacation',       icon: '✈️' },
-    { value: 'house',     label: '🏡 House',           icon: '🏡' },
-    { value: 'retirement',label: '🏖️ Retirement',     icon: '🏖️' },
-    { value: 'education', label: '📚 Education',       icon: '📚' },
-    { value: 'car',       label: '🚗 Car',             icon: '🚗' },
+    { value: 'emergency', label: 'Emergency Fund', icon: 'shield' },
+    { value: 'vacation',  label: 'Vacation',       icon: 'plane' },
+    { value: 'house',     label: 'House',         icon: 'home' },
+    { value: 'retirement',label: 'Retirement',     icon: 'umbrella' },
+    { value: 'education', label: 'Education',       icon: 'book' },
+    { value: 'car',       label: 'Car',             icon: 'car' },
     { value: 'other',     label: 'Other',           icon: 'target' },
   ]
 
@@ -152,7 +156,10 @@ function NewGoalModal({ onClose, onAdd }: { onClose: () => void; onAdd: (g: Goal
                   cursor: 'pointer', fontSize: '18px', lineHeight: 1, transition: 'all 0.15s',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px',
                 }}>
-                  {cat.icon}
+                  {(() => {
+                    const Icon = getIcon(cat.icon)
+                    return Icon ? <Icon size={16} /> : null
+                  })()}
                   <span style={{ fontSize: '9px', color: form.category === cat.value ? '#0f766e' : '#9aaab4' }}>
                     {cat.label.split(' ').slice(1).join(' ')}
                   </span>

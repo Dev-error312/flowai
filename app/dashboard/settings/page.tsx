@@ -1,13 +1,14 @@
 'use client'
 import { useState } from 'react'
+import { getIcon } from '@/lib/icon-map'
 import { MOCK_ACCOUNTS } from '@/lib/mock-data'
 
 const TABS = [
-  { id: 'profile',    label: 'Profile',    icon: '👤' },
+  { id: 'profile',    label: 'Profile',    icon: 'home' },
   { id: 'accounts',  label: 'Accounts',   icon: 'building' },
-  { id: 'ai',        label: 'AI Settings', icon: '✦' },
+  { id: 'ai',        label: 'AI Settings', icon: 'brain' },
   { id: 'notifications', label: 'Notifications', icon: 'bell' },
-  { id: 'security',  label: 'Security',   icon: '🔒' },
+  { id: 'security',  label: 'Security',   icon: 'shield' },
   { id: 'billing',   label: 'Billing',    icon: 'creditCard' },
 ]
 
@@ -150,7 +151,12 @@ export default function SettingsPage() {
               cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
               marginBottom: '2px', transition: 'all 0.15s',
             }}>
-              <span style={{ fontSize: '15px' }}>{tab.icon}</span>
+              <span style={{ fontSize: '15px' }}>
+                {(() => {
+                  const Icon = getIcon(tab.icon)
+                  return Icon ? <Icon size={15} /> : null
+                })()}
+              </span>
               {tab.label}
             </button>
           ))}

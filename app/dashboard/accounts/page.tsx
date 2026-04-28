@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { getIcon } from '@/lib/icon-map'
 import { MOCK_ACCOUNTS } from '@/lib/mock-data'
 import { formatCurrency, formatDate } from '@/lib/utils'
 import type { Account, AccountType } from '@/types'
@@ -7,9 +8,9 @@ import type { Account, AccountType } from '@/types'
 const TYPE_CONFIG: Record<AccountType, { icon: string; label: string; color: string }> = {
   checking:   { icon: 'building', label: 'Checking',   color: '#9333ea' },
   savings:    { icon: 'building', label: 'Savings',    color: '#16a34a' },
-  investment: { icon: '📈', label: 'Investment', color: '#0ea5e9' },
+  investment: { icon: 'trendingUp', label: 'Investment', color: '#0ea5e9' },
   credit:     { icon: 'creditCard', label: 'Credit',     color: '#f59e0b' },
-  loan:       { icon: '🏠', label: 'Loan',       color: '#ef4444' },
+  loan:       { icon: 'home', label: 'Loan',       color: '#ef4444' },
   cash:       { icon: '💵', label: 'Cash',       color: '#9aaab4' },
 }
 
@@ -35,7 +36,10 @@ function AccountCard({ account, onEdit }: { account: Account; onEdit: (a: Accoun
             background: cfg.color + '18',
             display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px',
           }}>
-            {cfg.icon}
+            {(() => {
+              const Icon = getIcon(cfg.icon)
+              return Icon ? <Icon size={18} /> : null
+            })()}
           </div>
           <div>
             <div style={{ fontWeight: 600, fontSize: '14px', color: '#111820' }}>{account.name}</div>
@@ -128,7 +132,12 @@ function AddAccountModal({ onClose, onAdd }: { onClose: () => void; onAdd: (a: A
                 display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px',
                 transition: 'all 0.15s',
               }}>
-                <span style={{ fontSize: '18px' }}>{cfg.icon}</span>
+                <span style={{ fontSize: '18px' }}>
+                  {(() => {
+                    const Icon = getIcon(cfg.icon)
+                    return Icon ? <Icon size={18} /> : null
+                  })()}
+                </span>
                 {cfg.label}
               </button>
             ))}

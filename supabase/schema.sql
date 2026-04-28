@@ -87,24 +87,24 @@ RETURNS VOID AS $$
 BEGIN
   INSERT INTO public.categories (user_id, name, icon, color, type, is_system) VALUES
     -- Expenses
-    (p_user_id, 'Housing',        '🏠', '#6366f1', 'expense', TRUE),
-    (p_user_id, 'Food & Dining',  '🍽️', '#f59e0b', 'expense', TRUE),
-    (p_user_id, 'Transportation', '🚗', '#3b82f6', 'expense', TRUE),
-    (p_user_id, 'Healthcare',     '🏥', '#ef4444', 'expense', TRUE),
-    (p_user_id, 'Shopping',       '🛍️', '#ec4899', 'expense', TRUE),
-    (p_user_id, 'Entertainment',  '🎬', '#8b5cf6', 'expense', TRUE),
+    (p_user_id, 'Housing',        'home', '#6366f1', 'expense', TRUE),
+    (p_user_id, 'Food & Dining',  'utensils', '#f59e0b', 'expense', TRUE),
+    (p_user_id, 'Transportation', 'car', '#3b82f6', 'expense', TRUE),
+    (p_user_id, 'Healthcare',     'heart', '#ef4444', 'expense', TRUE),
+    (p_user_id, 'Shopping',       'shoppingBag', '#ec4899', 'expense', TRUE),
+    (p_user_id, 'Entertainment',  'rocket', '#8b5cf6', 'expense', TRUE),
     (p_user_id, 'Subscriptions',  'smartphone', '#06b6d4', 'expense', TRUE),
     (p_user_id, 'Utilities',      'zap', '#eab308', 'expense', TRUE),
-    (p_user_id, 'Travel',         '✈️', '#14b8a6', 'expense', TRUE),
-    (p_user_id, 'Education',      '📚', '#f97316', 'expense', TRUE),
+    (p_user_id, 'Travel',         'plane', '#14b8a6', 'expense', TRUE),
+    (p_user_id, 'Education',      'book', '#f97316', 'expense', TRUE),
     (p_user_id, 'Savings',        'building', '#22c55e', 'expense', TRUE),
     (p_user_id, 'Investments',    'trendingUp', '#10b981', 'expense', TRUE),
-    (p_user_id, 'Other',          '📦', '#9aaab4', 'expense', TRUE),
+    (p_user_id, 'Other',          'dollarSign', '#9aaab4', 'expense', TRUE),
     -- Income
-    (p_user_id, 'Salary',              '💰', '#22c55e', 'income', TRUE),
-    (p_user_id, 'Freelance',           '💼', '#14b8a6', 'income', TRUE),
-    (p_user_id, 'Investment Returns',  '📈', '#10b981', 'income', TRUE),
-    (p_user_id, 'Other Income',        '🎁', '#f59e0b', 'income', TRUE);
+    (p_user_id, 'Salary',              'dollarSign', '#22c55e', 'income', TRUE),
+    (p_user_id, 'Freelance',           'briefcase', '#14b8a6', 'income', TRUE),
+    (p_user_id, 'Investment Returns',  'trendingUp', '#10b981', 'income', TRUE),
+    (p_user_id, 'Other Income',        'gift', '#f59e0b', 'income', TRUE);
 END;
 $$ LANGUAGE plpgsql;
 
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS public.goals (
   current_amount   NUMERIC(12,2) DEFAULT 0,
   target_date      DATE,
   category         TEXT DEFAULT 'other' CHECK (category IN ('emergency','vacation','house','retirement','education','car','other')),
-  icon             TEXT DEFAULT '🎯',
+  icon             TEXT DEFAULT 'target',
   color            TEXT DEFAULT '#14b8a6',
   is_completed     BOOLEAN DEFAULT FALSE,
   created_at       TIMESTAMPTZ DEFAULT NOW(),

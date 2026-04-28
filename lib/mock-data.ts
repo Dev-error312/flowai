@@ -7,24 +7,24 @@ import type {
 export const MOCK_ACCOUNTS: Account[] = [
   { id: 'acc-1', user_id: 'user-1', name: 'Chase Checking', type: 'checking', institution: 'Chase', balance: 8420.50, currency: 'USD', color: '#14b8a6', icon: 'building', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-2', user_id: 'user-1', name: 'Ally Savings', type: 'savings', institution: 'Ally Bank', balance: 24800.00, currency: 'USD', color: '#22c55e', icon: 'building', is_active: true, created_at: '2024-01-01' },
-  { id: 'acc-3', user_id: 'user-1', name: 'Fidelity 401k', type: 'investment', institution: 'Fidelity', balance: 87340.00, currency: 'USD', color: '#6366f1', icon: '📈', is_active: true, created_at: '2024-01-01' },
+  { id: 'acc-3', user_id: 'user-1', name: 'Fidelity 401k', type: 'investment', institution: 'Fidelity', balance: 87340.00, currency: 'USD', color: '#6366f1', icon: 'trendingUp', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-4', user_id: 'user-1', name: 'Chase Sapphire', type: 'credit', institution: 'Chase', balance: 2340.00, currency: 'USD', color: '#f59e0b', icon: 'creditCard', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-5', user_id: 'user-1', name: 'Robinhood', type: 'investment', institution: 'Robinhood', balance: 15600.00, currency: 'USD', color: '#10b981', icon: '🦾', is_active: true, created_at: '2024-01-01' },
 ]
 
 // ─── Categories ─────────────────────────────
 export const MOCK_CATEGORIES: Category[] = [
-  { id: 'cat-1', user_id: 'user-1', name: 'Housing', icon: '🏠', color: '#6366f1', type: 'expense', is_system: true },
-  { id: 'cat-2', user_id: 'user-1', name: 'Food & Dining', icon: '🍽️', color: '#f59e0b', type: 'expense', is_system: true },
-  { id: 'cat-3', user_id: 'user-1', name: 'Transportation', icon: '🚗', color: '#3b82f6', type: 'expense', is_system: true },
-  { id: 'cat-4', user_id: 'user-1', name: 'Entertainment', icon: '🎬', color: '#8b5cf6', type: 'expense', is_system: true },
-  { id: 'cat-5', user_id: 'user-1', name: 'Subscriptions', icon: '📱', color: '#06b6d4', type: 'expense', is_system: true },
-  { id: 'cat-6', user_id: 'user-1', name: 'Utilities', icon: '⚡', color: '#eab308', type: 'expense', is_system: true },
-  { id: 'cat-7', user_id: 'user-1', name: 'Shopping', icon: '🛍️', color: '#ec4899', type: 'expense', is_system: true },
-  { id: 'cat-8', user_id: 'user-1', name: 'Healthcare', icon: '🏥', color: '#ef4444', type: 'expense', is_system: true },
-  { id: 'cat-9', user_id: 'user-1', name: 'Investments', icon: '📈', color: '#10b981', type: 'expense', is_system: true },
+  { id: 'cat-1', user_id: 'user-1', name: 'Housing', icon: 'home', color: '#6366f1', type: 'expense', is_system: true },
+  { id: 'cat-2', user_id: 'user-1', name: 'Food & Dining', icon: 'utensils', color: '#f59e0b', type: 'expense', is_system: true },
+  { id: 'cat-3', user_id: 'user-1', name: 'Transportation', icon: 'car', color: '#3b82f6', type: 'expense', is_system: true },
+  { id: 'cat-4', user_id: 'user-1', name: 'Entertainment', icon: 'rocket', color: '#8b5cf6', type: 'expense', is_system: true },
+  { id: 'cat-5', user_id: 'user-1', name: 'Subscriptions', icon: 'smartphone', color: '#06b6d4', type: 'expense', is_system: true },
+  { id: 'cat-6', user_id: 'user-1', name: 'Utilities', icon: 'zap', color: '#eab308', type: 'expense', is_system: true },
+  { id: 'cat-7', user_id: 'user-1', name: 'Shopping', icon: 'shoppingBag', color: '#ec4899', type: 'expense', is_system: true },
+  { id: 'cat-8', user_id: 'user-1', name: 'Healthcare', icon: 'heart', color: '#ef4444', type: 'expense', is_system: true },
+  { id: 'cat-9', user_id: 'user-1', name: 'Investments', icon: 'trendingUp', color: '#10b981', type: 'expense', is_system: true },
   { id: 'cat-10', user_id: 'user-1', name: 'Salary', icon: 'dollarSign', color: '#22c55e', type: 'income', is_system: true },
-  { id: 'cat-11', user_id: 'user-1', name: 'Freelance', icon: '💼', color: '#14b8a6', type: 'income', is_system: true },
+  { id: 'cat-11', user_id: 'user-1', name: 'Freelance', icon: 'briefcase', color: '#14b8a6', type: 'income', is_system: true },
 ]
 
 // ─── Transactions ────────────────────────────
@@ -67,8 +67,8 @@ export const MOCK_INVESTMENTS: Investment[] = [
 
 // ─── Goals ───────────────────────────────────
 export const MOCK_GOALS: Goal[] = [
-  { id: 'goal-1', user_id: 'user-1', name: 'Emergency Fund', target_amount: 30000, current_amount: 24800, target_date: '2025-06-01', category: 'emergency', icon: '🛡️', color: '#22c55e', progress_percent: 82.7, monthly_needed: 868, months_remaining: 6 },
-  { id: 'goal-2', user_id: 'user-1', name: 'Japan Vacation', target_amount: 8000, current_amount: 3200, target_date: '2025-09-01', category: 'vacation', icon: '✈️', color: '#14b8a6', progress_percent: 40, monthly_needed: 480, months_remaining: 10 },
+  { id: 'goal-1', user_id: 'user-1', name: 'Emergency Fund', target_amount: 30000, current_amount: 24800, target_date: '2025-06-01', category: 'emergency', icon: 'shield', color: '#22c55e', progress_percent: 82.7, monthly_needed: 868, months_remaining: 6 },
+  { id: 'goal-2', user_id: 'user-1', name: 'Japan Vacation', target_amount: 8000, current_amount: 3200, target_date: '2025-09-01', category: 'vacation', icon: 'plane', color: '#14b8a6', progress_percent: 40, monthly_needed: 480, months_remaining: 10 },
   { id: 'goal-3', user_id: 'user-1', name: 'Down Payment', target_amount: 80000, current_amount: 24800, target_date: '2027-01-01', category: 'house', icon: '🏡', color: '#6366f1', progress_percent: 31, monthly_needed: 2060, months_remaining: 26 },
 ]
 
@@ -100,7 +100,7 @@ export const MOCK_INSIGHTS: AIInsight[] = [
     id: 'ins-3',
     user_id: 'user-1',
     type: 'suggestion',
-    title: 'You\'re 83% to your emergency fund goal 🎉',
+    title: 'You\'re 83% to your emergency fund goal!',
     body: 'Your Ally Savings has grown to $24,800 — just $5,200 from your 3-month emergency fund target of $30,000. At your current savings rate of $868/month, you\'ll hit this milestone in ~6 months.',
     action: 'Once your emergency fund is complete, redirect that $868/mo toward your Japan vacation goal.',
     severity: 'positive',

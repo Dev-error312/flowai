@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { Mail } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
 
 export default function SignupPage() {
@@ -64,7 +65,7 @@ export default function SignupPage() {
     return (
       <div style={{ minHeight: '100vh', background: '#f1f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
         <div style={{ textAlign: 'center', maxWidth: '400px' }}>
-          <div style={{ fontSize: '48px', marginBottom: '1rem' }}>✉️</div>
+          <Mail size={48} style={{ marginBottom: '1rem' }} />
           <h1 style={{ fontWeight: 800, fontSize: '24px', color: '#111820', marginBottom: '0.5rem' }}>Check your inbox</h1>
           <p style={{ color: '#627282', marginBottom: '1.5rem', lineHeight: 1.6 }}>
             We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account and start your financial journey.

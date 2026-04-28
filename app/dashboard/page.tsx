@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell, PieChart, Pie } from 'recharts'
 import { MOCK_DASHBOARD, MOCK_SPENDING_TRENDS, MOCK_ACCOUNTS } from '@/lib/mock-data'
 import { formatCurrency, formatPercent, formatDate, getBudgetColor } from '@/lib/utils'
+import { getIcon } from '@/lib/icon-map'
 import type { AIInsight } from '@/types'
 import Link from 'next/link'
 
@@ -22,7 +23,12 @@ function InsightCard({ insight }: { insight: AIInsight }) {
       animation: 'slideUp 0.4s ease both',
     }}>
       <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-        <div style={{ fontSize: '16px', color: cfg.color, flexShrink: 0, marginTop: '2px' }}>{cfg.icon}</div>
+        <div style={{ fontSize: '16px', color: cfg.color, flexShrink: 0, marginTop: '2px' }}>
+          {(() => {
+            const Icon = getIcon(cfg.icon)
+            return Icon ? <Icon size={16} /> : null
+          })()}
+        </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 500, fontSize: '13px', color: '#111820', marginBottom: '4px' }}>{insight.title}</div>
           <div style={{ fontSize: '12px', color: '#627282', lineHeight: 1.6, marginBottom: insight.action ? '8px' : 0 }}>{insight.body}</div>
@@ -51,7 +57,10 @@ function MetricCard({ label, value, change, changeLabel, color = '#9333ea', icon
     }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
         <div style={{ fontSize: '11px', color: '#9370db', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{label}</div>
-        {icon && <div style={{ fontSize: '22px', opacity: 0.8 }}>{icon}</div>}
+        {icon && (() => {
+          const Icon = getIcon(icon)
+          return Icon ? <div style={{ fontSize: '22px', opacity: 0.8 }}><Icon size={22} /></div> : null
+        })()}
       </div>
       <div style={{ fontSize: '28px', fontWeight: 700, color: '#0f0d1a', marginBottom: '0.6rem', letterSpacing: '-0.02em' }}>{value}</div>
       {change !== undefined && (
@@ -263,7 +272,10 @@ export default function DashboardPage() {
           {MOCK_ACCOUNTS.map((acc) => (
             <div key={acc.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', borderBottom: '1px solid #f1f4f6' }}>
               <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: acc.color + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px', flexShrink: 0 }}>
-                {acc.icon}
+                {(() => {
+                  const Icon = getIcon(acc.icon)
+                  return Icon ? <Icon size={18} /> : null
+                })()}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: '13px', fontWeight: 500, color: '#111820', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{acc.name}</div>
@@ -294,7 +306,10 @@ export default function DashboardPage() {
               borderBottom: i < data.recent_transactions.length - 1 ? '1px solid #f8fafb' : 'none',
             }}>
               <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: (tx.category?.color ?? '#9aaab4') + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', flexShrink: 0 }}>
-                {tx.category?.icon ?? '📦'}
+                {(() => {
+                  const Icon = getIcon(tx.category?.icon) || getIcon('dollarSign')
+                  return Icon ? <Icon size={18} /> : null
+                })()}
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: '13px', fontWeight: 500, color: '#111820', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>

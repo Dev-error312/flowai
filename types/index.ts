@@ -64,9 +64,9 @@ export interface Category {
 
 export const DEFAULT_CATEGORIES: Omit<Category, 'id' | 'user_id'>[] = [
   // Expenses
-  { name: 'Housing', icon: '🏠', color: '#6366f1', type: 'expense', is_system: true },
-  { name: 'Food & Dining', icon: '🍽️', color: '#f59e0b', type: 'expense', is_system: true },
-  { name: 'Transportation', icon: '🚗', color: '#3b82f6', type: 'expense', is_system: true },
+  { name: 'Housing', icon: 'home', color: '#6366f1', type: 'expense', is_system: true },
+  { name: 'Food & Dining', icon: 'utensils', color: '#f59e0b', type: 'expense', is_system: true },
+  { name: 'Transportation', icon: 'car', color: '#3b82f6', type: 'expense', is_system: true },
   { name: 'Healthcare', icon: '🏥', color: '#ef4444', type: 'expense', is_system: true },
   { name: 'Shopping', icon: '🛍️', color: '#ec4899', type: 'expense', is_system: true },
   { name: 'Entertainment', icon: '🎬', color: '#8b5cf6', type: 'expense', is_system: true },

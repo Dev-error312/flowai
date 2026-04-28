@@ -2,6 +2,7 @@
 import { useState, useMemo } from 'react'
 import { MOCK_TRANSACTIONS, MOCK_CATEGORIES, MOCK_ACCOUNTS } from '@/lib/mock-data'
 import { formatCurrency, formatDate, cn } from '@/lib/utils'
+import { getIcon } from '@/lib/icon-map'
 import type { Transaction, TransactionType } from '@/types'
 
 const TYPE_FILTERS = [
@@ -74,7 +75,7 @@ function AddTransactionModal({ onClose, onAdd }: { onClose: () => void; onAdd: (
             <label style={{ fontSize: '12px', color: '#627282', fontWeight: 500, display: 'block', marginBottom: '5px' }}>Category</label>
             <select value={form.category_id} onChange={e => setForm(f => ({ ...f, category_id: e.target.value }))} style={inputStyle}>
               {MOCK_CATEGORIES.filter(c => c.type === (form.type === 'income' ? 'income' : 'expense')).map(c => (
-                <option key={c.id} value={c.id}>{c.icon} {c.name}</option>
+                <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
           </div>
@@ -82,7 +83,7 @@ function AddTransactionModal({ onClose, onAdd }: { onClose: () => void; onAdd: (
             <label style={{ fontSize: '12px', color: '#627282', fontWeight: 500, display: 'block', marginBottom: '5px' }}>Account</label>
             <select value={form.account_id} onChange={e => setForm(f => ({ ...f, account_id: e.target.value }))} style={inputStyle}>
               {MOCK_ACCOUNTS.map(a => (
-                <option key={a.id} value={a.id}>{a.icon} {a.name}</option>
+                <option key={a.id} value={a.id}>{a.name}</option>
               ))}
             </select>
           </div>
@@ -264,7 +265,10 @@ export default function TransactionsPage() {
               {/* Transaction info */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
                 <div style={{ width: '36px', height: '36px', borderRadius: '9px', background: (tx.category?.color ?? '#9aaab4') + '18', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '15px', flexShrink: 0 }}>
-                  {tx.category?.icon ?? '📦'}
+                  {(() => {
+                    const Icon = getIcon(tx.category?.icon) || getIcon('dollarSign')
+                    return Icon ? <Icon size={18} /> : null
+                  })()}
                 </div>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontSize: '13px', fontWeight: 500, color: '#111820', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -285,7 +289,11 @@ export default function TransactionsPage() {
                   background: (tx.category?.color ?? '#9aaab4') + '18',
                   color: tx.category?.color ?? '#9aaab4',
                 }}>
-                  {tx.category?.icon} {tx.category?.name ?? 'Uncategorized'}
+                  {(() => {
+                    const Icon = getIcon(tx.category?.icon)
+                    return Icon ? <Icon size={12} /> : null
+                  })()}
+                  {tx.category?.name ?? 'Uncategorized'}
                 </span>
               </div>
 

@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { Pencil, PartyPopper } from 'lucide-react'
 import { getIcon } from '@/lib/icon-map'
 
 const STEPS = [
@@ -135,13 +136,18 @@ export default function OnboardingPage() {
             <div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '1.5rem' }}>
                 {[
-                  { icon: '🧠', title: 'AI-powered advice', desc: 'Claude analyzes your finances and tells you what to do' },
+                  { icon: 'brain', title: 'AI-powered advice', desc: 'Claude analyzes your finances and tells you what to do' },
                   { icon: 'barChart', title: 'Everything unified', desc: 'Income, expenses, investments in one dashboard' },
                   { icon: 'eye', title: 'Future-aware', desc: 'See cashflow forecasts 90 days ahead' },
-                  { icon: '🔒', title: 'Bank-level security', desc: 'Read-only access, AES-256 encrypted, never shared' },
+                  { icon: 'shield', title: 'Bank-level security', desc: 'Read-only access, AES-256 encrypted, never shared' },
                 ].map(f => (
                   <div key={f.title} style={{ background: '#f8fafb', borderRadius: '12px', padding: '1rem', border: '1px solid #f1f4f6' }}>
-                    <div style={{ fontSize: '22px', marginBottom: '6px' }}>{f.icon}</div>
+                    <div style={{ fontSize: '22px', marginBottom: '6px' }}>
+                      {(() => {
+                        const Icon = getIcon(f.icon)
+                        return Icon ? <Icon size={22} /> : null
+                      })()}
+                    </div>
                     <div style={{ fontSize: '13px', fontWeight: 500, color: '#111820', marginBottom: '3px' }}>{f.title}</div>
                     <div style={{ fontSize: '12px', color: '#9aaab4', lineHeight: 1.4 }}>{f.desc}</div>
                   </div>
@@ -254,7 +260,7 @@ export default function OnboardingPage() {
                   cursor: 'pointer', textAlign: 'left',
                 }}>
                   <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: '#f1f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', flexShrink: 0 }}>
-                    ✏️
+                    <Pencil size={24} />
                   </div>
                   <div>
                     <div style={{ fontWeight: 600, fontSize: '14px', color: '#111820' }}>Add accounts manually</div>
@@ -334,7 +340,7 @@ export default function OnboardingPage() {
           {/* ── Step 4: Ready ── */}
           {step === 4 && (
             <div style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '64px', marginBottom: '1rem', animation: 'float 2s ease-in-out infinite' }}>🎉</div>
+              <PartyPopper size={64} style={{ marginBottom: '1rem', animation: 'float 2s ease-in-out infinite' }} />
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '1.75rem' }}>
                 {[
                   { done: true,  text: 'Financial profile created' },
