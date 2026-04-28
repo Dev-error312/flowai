@@ -75,7 +75,7 @@ export const DEFAULT_CATEGORIES: Omit<Category, 'id' | 'user_id'>[] = [
   { name: 'Travel', icon: '✈️', color: '#14b8a6', type: 'expense', is_system: true },
   { name: 'Education', icon: '📚', color: '#f97316', type: 'expense', is_system: true },
   { name: 'Personal Care', icon: '💆', color: '#a855f7', type: 'expense', is_system: true },
-  { name: 'Savings', icon: '🏦', color: '#22c55e', type: 'expense', is_system: true },
+  { name: 'Savings', icon: 'building', color: '#22c55e', type: 'expense', is_system: true },
   { name: 'Investments', icon: '📈', color: '#10b981', type: 'expense', is_system: true },
   { name: 'Debt Payments', icon: '💳', color: '#64748b', type: 'expense', is_system: true },
   { name: 'Other', icon: '📦', color: '#9aaab4', type: 'expense', is_system: true },

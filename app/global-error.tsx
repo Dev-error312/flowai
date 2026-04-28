@@ -16,15 +16,15 @@ export default function GlobalError({
 
   return (
     <html lang="en">
-      <body style={{ fontFamily: 'DM Sans, sans-serif', background: '#f1f4f6', margin: 0 }}>
+      <body style={{ background: '#f1f4f6', margin: 0 }}>
         <div style={{
           minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
           textAlign: 'center', padding: '2rem',
         }}>
           <div style={{ maxWidth: '440px' }}>
-            <div style={{ fontSize: '48px', marginBottom: '1rem' }}>⚠️</div>
+            <div style={{ fontSize: '48px', marginBottom: '1rem' }}>⚠</div>
             <h1 style={{
-              fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.5rem',
+              fontWeight: 800, fontSize: '1.5rem',
               color: '#111820', marginBottom: '0.5rem', letterSpacing: '-0.03em',
             }}>
               Something went wrong
@@ -38,7 +38,7 @@ export default function GlobalError({
                 onClick={reset}
                 style={{
                   padding: '10px 24px', borderRadius: '10px', border: 'none',
-                  background: '#14b8a6', color: '#042f2e', fontSize: '14px',
+                  background: '#9333ea', color: 'white', fontSize: '14px',
                   fontWeight: 600, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
                 }}
               >

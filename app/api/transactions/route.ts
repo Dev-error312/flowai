@@ -1,50 +1,84 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { MOCK_TRANSACTIONS } from '@/lib/mock-data'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url)
-  const type = searchParams.get('type')
-  const category = searchParams.get('category')
-  const search = searchParams.get('search')?.toLowerCase()
-  const limit = parseInt(searchParams.get('limit') ?? '50')
-  const page = parseInt(searchParams.get('page') ?? '1')
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
 
-  let transactions = [...MOCK_TRANSACTIONS]
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
 
-  if (type && type !== 'all') {
-    transactions = transactions.filter(t => t.type === type)
+    const { searchParams } = new URL(req.url)
+    const type = searchParams.get('type')
+    const category = searchParams.get('category')
+    const search = searchParams.get('search')
+    const limit = parseInt(searchParams.get('limit') ?? '50')
+    const page = parseInt(searchParams.get('page') ?? '1')
+
+    let query = supabase
+      .from('transactions')
+      .select('*', { count: 'exact' })
+      .eq('user_id', user.id)
+
+    if (type && type !== 'all') {
+      query = query.eq('type', type)
+    }
+    if (category) {
+      query = query.eq('category_id', category)
+    }
+
+    const { data: transactions, count, error } = await query
+      .order('date', { ascending: false })
+      .range((page - 1) * limit, page * limit - 1)
+
+    if (error) throw error
+
+    // Client-side search if needed
+    let filtered = transactions || []
+    if (search) {
+      const searchLower = search.toLowerCase()
+      filtered = filtered.filter(t =>
+        t.merchant?.toLowerCase().includes(searchLower) ||
+        t.description.toLowerCase().includes(searchLower)
+      )
+    }
+
+    return NextResponse.json({
+      data: filtered,
+      meta: { total: count || 0, page, limit, pages: Math.ceil((count || 0) / limit) },
+    })
+  } catch (error) {
+    console.error('Transactions error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
-  if (category) {
-    transactions = transactions.filter(t => t.category_id === category)
-  }
-  if (search) {
-    transactions = transactions.filter(t =>
-      t.merchant?.toLowerCase().includes(search) ||
-      t.description.toLowerCase().includes(search) ||
-      t.category?.name.toLowerCase().includes(search)
-    )
-  }
-
-  // Sort by date desc
-  transactions.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
-  const total = transactions.length
-  const paginated = transactions.slice((page - 1) * limit, page * limit)
-
-  return NextResponse.json({
-    data: paginated,
-    meta: { total, page, limit, pages: Math.ceil(total / limit) },
-  })
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
-  // In production: validate with Zod, insert to Supabase, trigger AI categorization
-  const newTx = {
-    id: `tx-${Date.now()}`,
-    user_id: 'user-1',
-    created_at: new Date().toISOString(),
-    ...body,
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const body = await req.json()
+    const { data, error } = await supabase
+      .from('transactions')
+      .insert([
+        {
+          user_id: user.id,
+          ...body,
+        },
+      ])
+      .select()
+
+    if (error) throw error
+    return NextResponse.json({ data: data?.[0] }, { status: 201 })
+  } catch (error) {
+    console.error('Create transaction error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
-  return NextResponse.json({ data: newTx }, { status: 201 })
 }

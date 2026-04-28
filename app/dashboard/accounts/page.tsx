@@ -5,9 +5,9 @@ import { formatCurrency, formatDate } from '@/lib/utils'
 import type { Account, AccountType } from '@/types'
 
 const TYPE_CONFIG: Record<AccountType, { icon: string; label: string; color: string }> = {
-  checking:   { icon: '🏦', label: 'Checking',   color: '#14b8a6' },
-  savings:    { icon: '💰', label: 'Savings',    color: '#22c55e' },
-  investment: { icon: '📈', label: 'Investment', color: '#6366f1' },
+  checking:   { icon: 'building', label: 'Checking',   color: '#9333ea' },
+  savings:    { icon: '💰', label: 'Savings',    color: '#16a34a' },
+  investment: { icon: '📈', label: 'Investment', color: '#0ea5e9' },
   credit:     { icon: '💳', label: 'Credit',     color: '#f59e0b' },
   loan:       { icon: '🏠', label: 'Loan',       color: '#ef4444' },
   cash:       { icon: '💵', label: 'Cash',       color: '#9aaab4' },
@@ -121,7 +121,7 @@ function AddAccountModal({ onClose, onAdd }: { onClose: () => void; onAdd: (a: A
             {(Object.entries(TYPE_CONFIG) as [AccountType, typeof TYPE_CONFIG[AccountType]][]).map(([type, cfg]) => (
               <button key={type} onClick={() => setForm(f => ({ ...f, type }))} style={{
                 padding: '8px 4px', borderRadius: '8px', border: '1.5px solid',
-                borderColor: form.type === type ? cfg.color : '#e5eaed',
+                borderColor: form.type === type ? cfg.color : '#e9d5ff',
                 background: form.type === type ? cfg.color + '12' : 'transparent',
                 cursor: 'pointer', fontSize: '11px', fontWeight: 500,
                 color: form.type === type ? cfg.color : '#9aaab4',

@@ -1,54 +1,121 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { MOCK_DASHBOARD, MOCK_BUDGETS, MOCK_INVESTMENTS } from '@/lib/mock-data'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { formatCurrency } from '@/lib/utils'
+
+export async function GET() {
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { data, error } = await supabase
+      .from('ai_insights')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('generated_at', { ascending: false })
+      .limit(10)
+
+    if (error) throw error
+    return NextResponse.json({ data })
+  } catch (error) {
+    console.error('Insights error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
     const apiKey = process.env.ANTHROPIC_API_KEY
+
+    // Fetch user's financial data
+    const { data: budgets } = await supabase
+      .from('budget_summary')
+      .select('*')
+      .eq('user_id', user.id)
+
+    const { data: investments } = await supabase
+      .from('investments')
+      .select('*')
+      .eq('user_id', user.id)
+
+    const { data: transactions } = await supabase
+      .from('transactions')
+      .select('*')
+      .eq('user_id', user.id)
+
+    const { data: accounts } = await supabase
+      .from('accounts')
+      .select('*')
+      .eq('user_id', user.id)
+
+    // Calculate stats
+    const currentMonth = new Date().toISOString().slice(0, 7)
+    const monthlyTx = transactions?.filter(t => t.date?.startsWith(currentMonth)) || []
+    const totalExpenses = monthlyTx
+      .filter(t => t.type === 'expense')
+      .reduce((sum, t) => sum + parseFloat(t.amount || 0), 0)
+    const totalIncome = monthlyTx
+      .filter(t => t.type === 'income')
+      .reduce((sum, t) => sum + parseFloat(t.amount || 0), 0)
+    const netWorth = accounts?.reduce((sum, a) => sum + parseFloat(a.balance || 0), 0) || 0
+    const savingsRate = totalIncome > 0 ? ((totalIncome - totalExpenses) / totalIncome) * 100 : 0
 
     if (!apiKey) {
       // Return mock insights in demo mode
-      return NextResponse.json({ insights: MOCK_DASHBOARD.active_insights })
+      return NextResponse.json({
+        insights: [
+          {
+            type: 'suggestion',
+            title: 'Set up your financial data',
+            body: 'Connect your accounts and add transactions to get AI insights.',
+            action: 'Add an account',
+            severity: 'info',
+          },
+        ],
+      })
     }
 
-    // Build financial context for insight generation
-    const overBudget = MOCK_BUDGETS.filter(b => (b.percent_used ?? 0) > 100)
-    const nearBudget = MOCK_BUDGETS.filter(b => (b.percent_used ?? 0) >= 80 && (b.percent_used ?? 0) < 100)
-    const totalInvestments = MOCK_INVESTMENTS.reduce((s, i) => s + (i.current_value ?? 0), 0)
+    // Build financial context
+    const overBudget = budgets?.filter(b => (b.percent_used ?? 0) > 100) || []
+    const nearBudget = budgets?.filter(b => (b.percent_used ?? 0) >= 80 && (b.percent_used ?? 0) < 100) || []
+    const totalInvestments = investments?.reduce((s, i) => s + parseFloat(i.current_price || 0) * parseFloat(i.quantity || 0), 0) || 0
 
     const prompt = `You are a financial analyst generating personalized insights for a user's finance app.
 
 USER FINANCIAL DATA:
-- Net worth: ${formatCurrency(MOCK_DASHBOARD.net_worth)}
-- Monthly income: ${formatCurrency(MOCK_DASHBOARD.monthly_income)}
-- Monthly expenses: ${formatCurrency(MOCK_DASHBOARD.monthly_expenses)}  
-- Savings rate: ${MOCK_DASHBOARD.savings_rate.toFixed(1)}%
+- Net worth: ${formatCurrency(netWorth)}
+- Monthly income: ${formatCurrency(totalIncome)}
+- Monthly expenses: ${formatCurrency(totalExpenses)}  
+- Savings rate: ${savingsRate.toFixed(1)}%
 
 BUDGET STATUS:
-${MOCK_BUDGETS.map(b => `- ${b.category?.name}: $${b.spent?.toFixed(0)} / $${b.amount} (${b.percent_used?.toFixed(0)}%)`).join('\n')}
-Over budget: ${overBudget.map(b => b.category?.name).join(', ') || 'none'}
-Near budget (80%+): ${nearBudget.map(b => b.category?.name).join(', ') || 'none'}
+${budgets?.map(b => `- Category: $${b.spent?.toFixed(0)} / $${b.amount} (${b.percent_used?.toFixed(0)}%)`).join('\n') || 'No budgets'}
+Over budget: ${overBudget.length > 0 ? 'Yes' : 'None'}
+Near limit (80%+): ${nearBudget.length > 0 ? 'Yes' : 'None'}
 
 INVESTMENTS (total: ${formatCurrency(totalInvestments)}):
-${MOCK_INVESTMENTS.map(i => `- ${i.name}: ${formatCurrency(i.current_value ?? 0)} (${i.gain_loss_percent?.toFixed(1)}% gain)`).join('\n')}
+${investments?.map(i => `- ${i.name}: ${formatCurrency(parseFloat(i.current_price || 0) * parseFloat(i.quantity || 0))}`).join('\n') || 'None'}
 
 Generate exactly 4 financial insights in this JSON format (return ONLY the JSON array, no markdown):
 [
   {
     "type": "anomaly|suggestion|risk|investment|cashflow|weekly_review",
     "title": "Short actionable title (max 60 chars)",
-    "body": "2-3 sentences with specific dollar amounts. Reference their real data.",
-    "action": "One specific next step they can take today",
+    "body": "2-3 sentences with specific dollar amounts.",
+    "action": "One specific next step",
     "severity": "positive|info|warning|critical"
   }
-]
-
-Rules:
-- Reference specific dollar amounts from the data
-- Be coaching in tone, not alarmist
-- Give concrete, actionable advice
-- Cover spending, investment, and cashflow angles
-- The first insight should be the most impactful one`
+]`
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -65,13 +132,21 @@ Rules:
     })
 
     if (!response.ok) {
-      return NextResponse.json({ insights: MOCK_DASHBOARD.active_insights })
+      return NextResponse.json({
+        insights: [
+          {
+            type: 'suggestion',
+            title: 'Keep tracking your finances',
+            body: 'Your data is being monitored for insights.',
+            action: 'Continue adding data',
+            severity: 'info',
+          },
+        ],
+      })
     }
 
-    const data = await response.json()
-    const text = data.content[0]?.text ?? '[]'
-
-    // Parse the JSON response
+    const responseData = await response.json()
+    const text = responseData.content[0]?.text ?? '[]'
     const clean = text.replace(/```json\n?|\n?```/g, '').trim()
     const insights = JSON.parse(clean)
 
@@ -85,9 +160,16 @@ Rules:
     }))
 
     return NextResponse.json({ insights: enriched })
-
   } catch (err) {
     console.error('Insights generation error:', err)
-    return NextResponse.json({ insights: MOCK_DASHBOARD.active_insights })
+    return NextResponse.json({ insights: [
+      {
+        type: 'suggestion',
+        title: 'Keep tracking your finances',
+        body: 'Your data is being monitored for insights.',
+        action: 'Continue adding data',
+        severity: 'info',
+      },
+    ] })
   }
 }

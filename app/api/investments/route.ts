@@ -1,24 +1,63 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { MOCK_INVESTMENTS } from '@/lib/mock-data'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 export async function GET() {
-  const investments = MOCK_INVESTMENTS.map(inv => ({
-    ...inv,
-    current_value: inv.quantity * inv.current_price,
-    gain_loss: (inv.current_price - inv.avg_cost) * inv.quantity,
-    gain_loss_percent: ((inv.current_price - inv.avg_cost) / inv.avg_cost) * 100,
-  }))
-  return NextResponse.json({ data: investments })
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { data, error } = await supabase
+      .from('investments')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+
+    const investments = (data || []).map(inv => ({
+      ...inv,
+      current_value: parseFloat(inv.quantity || 0) * parseFloat(inv.current_price || 0),
+      gain_loss: (parseFloat(inv.current_price || 0) - parseFloat(inv.avg_cost || 0)) * parseFloat(inv.quantity || 0),
+      gain_loss_percent: parseFloat(inv.avg_cost || 0) > 0
+        ? ((parseFloat(inv.current_price || 0) - parseFloat(inv.avg_cost || 0)) / parseFloat(inv.avg_cost || 0)) * 100
+        : 0,
+    }))
+
+    return NextResponse.json({ data: investments })
+  } catch (error) {
+    console.error('Investments error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
-  const investment = {
-    id: `inv-${Date.now()}`,
-    user_id: 'user-1',
-    last_updated: new Date().toISOString(),
-    created_at: new Date().toISOString(),
-    ...body,
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const body = await req.json()
+    const { data, error } = await supabase
+      .from('investments')
+      .insert([
+        {
+          user_id: user.id,
+          ...body,
+        },
+      ])
+      .select()
+
+    if (error) throw error
+    return NextResponse.json({ data: data?.[0] }, { status: 201 })
+  } catch (error) {
+    console.error('Create investment error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
-  return NextResponse.json({ data: investment }, { status: 201 })
 }

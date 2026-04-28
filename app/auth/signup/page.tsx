@@ -55,7 +55,7 @@ export default function SignupPage() {
 
   const inp: React.CSSProperties = {
     width: '100%', padding: '11px 14px', borderRadius: '10px',
-    border: '1px solid #e5eaed', fontSize: '15px', fontFamily: 'DM Sans, sans-serif',
+    border: '1px solid #e5eaed', fontSize: '15px',
     color: '#111820', outline: 'none', background: '#f8fafb', boxSizing: 'border-box',
     transition: 'border-color 0.15s',
   }
@@ -65,7 +65,7 @@ export default function SignupPage() {
       <div style={{ minHeight: '100vh', background: '#f1f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
         <div style={{ textAlign: 'center', maxWidth: '400px' }}>
           <div style={{ fontSize: '48px', marginBottom: '1rem' }}>✉️</div>
-          <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '24px', color: '#111820', marginBottom: '0.5rem' }}>Check your inbox</h1>
+          <h1 style={{ fontWeight: 800, fontSize: '24px', color: '#111820', marginBottom: '0.5rem' }}>Check your inbox</h1>
           <p style={{ color: '#627282', marginBottom: '1.5rem', lineHeight: 1.6 }}>
             We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account and start your financial journey.
           </p>
@@ -85,15 +85,15 @@ export default function SignupPage() {
       <div style={{ width: '100%', maxWidth: '400px' }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '28px', letterSpacing: '-0.04em' }}>
-              <span style={{ color: '#14b8a6' }}>Flow</span><span style={{ color: '#111820' }}>AI</span>
+            <div style={{ fontWeight: 800, fontSize: '28px', letterSpacing: '-0.04em' }}>
+              <span style={{ color: '#9333ea' }}>Flow</span><span style={{ color: '#111820' }}>AI</span>
             </div>
           </Link>
           <div style={{ color: '#9aaab4', fontSize: '14px', marginTop: '4px' }}>Start your financial journey</div>
         </div>
 
         <div style={{ background: 'white', borderRadius: '18px', padding: '2rem', border: '1px solid #e5eaed', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
-          <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '22px', color: '#111820', marginBottom: '0.25rem' }}>Create your account</h1>
+          <h1 style={{ fontWeight: 700, fontSize: '22px', color: '#111820', marginBottom: '0.25rem' }}>Create your account</h1>
           <p style={{ color: '#9aaab4', fontSize: '14px', marginBottom: '1.5rem' }}>Free forever. No credit card required.</p>
 
           <button onClick={handleGoogle} disabled={loading} style={{
@@ -157,7 +157,7 @@ export default function SignupPage() {
 
             <button type="submit" disabled={loading} style={{
               width: '100%', padding: '12px', borderRadius: '10px', border: 'none',
-              background: loading ? '#e5eaed' : '#14b8a6', color: loading ? '#9aaab4' : '#042f2e',
+              background: loading ? '#e9d5ff' : '#9333ea', color: loading ? '#9aaab4' : 'white',
               fontSize: '15px', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
               fontFamily: 'DM Sans, sans-serif',
             }}>
@@ -172,7 +172,7 @@ export default function SignupPage() {
           </form>
 
           <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '13px', color: '#9aaab4' }}>
-            Have an account? <Link href="/auth/login" style={{ color: '#14b8a6', textDecoration: 'none', fontWeight: 500 }}>Sign in</Link>
+            Have an account? <Link href="/auth/login" style={{ color: '#9333ea', textDecoration: 'none', fontWeight: 500 }}>Sign in</Link>
           </div>
         </div>
       </div>

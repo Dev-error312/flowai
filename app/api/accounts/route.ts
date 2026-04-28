@@ -1,20 +1,55 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { MOCK_ACCOUNTS } from '@/lib/mock-data'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 export async function GET() {
-  // In production: fetch from Supabase with user auth
-  return NextResponse.json({ data: MOCK_ACCOUNTS })
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const { data, error } = await supabase
+      .from('accounts')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+
+    if (error) throw error
+    return NextResponse.json({ data })
+  } catch (error) {
+    console.error('Accounts error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  }
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json()
-  const newAccount = {
-    id: `acc-${Date.now()}`,
-    user_id: 'user-1',
-    is_active: true,
-    created_at: new Date().toISOString(),
-    currency: 'USD',
-    ...body,
+  try {
+    const supabase = await createServerSupabaseClient()
+    const { data: { user } } = await supabase.auth.getUser()
+
+    if (!user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    const body = await req.json()
+    const { data, error } = await supabase
+      .from('accounts')
+      .insert([
+        {
+          user_id: user.id,
+          currency: 'USD',
+          is_active: true,
+          ...body,
+        },
+      ])
+      .select()
+
+    if (error) throw error
+    return NextResponse.json({ data: data?.[0] }, { status: 201 })
+  } catch (error) {
+    console.error('Create account error:', error)
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
-  return NextResponse.json({ data: newAccount }, { status: 201 })
 }

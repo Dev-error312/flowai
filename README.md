@@ -6,7 +6,7 @@ FlowAI is a production-ready AI financial advisor built with Next.js 14, Supabas
 
 ---
 
-## 🚀 Quick Start (Demo mode — no API keys needed)
+## Quick Start (Demo mode — no API keys needed)
 
 ```bash
 # Clone and install
@@ -189,7 +189,7 @@ Redirect URLs: https://your-app.vercel.app/auth/callback
 
 ---
 
-## 📊 Tech Stack
+## Tech Stack
 
 | Layer | Technology | Why |
 |-------|-----------|-----|
@@ -227,7 +227,7 @@ npm run build
 
 ---
 
-## 📈 Feature Roadmap
+## Feature Roadmap
 
 ### MVP (current)
 - [x] Dashboard with net worth, income, expenses
@@ -263,6 +263,6 @@ MIT — build on this, launch something, make money.
 
 ---
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 FlowAI provides informational guidance only. Not regulated financial advice. Always consult a licensed financial advisor before making major financial decisions. AI responses are based on your transaction data and general financial principles — they do not account for your complete tax situation, legal obligations, or personal circumstances.

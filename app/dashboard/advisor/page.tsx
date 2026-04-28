@@ -166,13 +166,13 @@ export default function AdvisorPage() {
     <div style={{ height: 'calc(100vh - 60px - 3rem)', display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
       {/* Header */}
       <div style={{ background: 'white', borderRadius: '14px 14px 0 0', padding: '1.1rem 1.4rem', border: '1px solid #e5eaed', borderBottom: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #14b8a6, #6366f1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>
+        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #9333ea, #0ea5e9)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>
           ✦
         </div>
         <div>
           <div style={{ fontWeight: 600, fontSize: '15px', color: '#111820', fontFamily: 'Syne, sans-serif' }}>AI Financial Advisor</div>
           <div style={{ fontSize: '12px', color: '#9aaab4', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#16a34a', display: 'inline-block' }} />
             Powered by Claude · Sees your real financial data
           </div>
         </div>
@@ -191,10 +191,10 @@ export default function AdvisorPage() {
             {/* Avatar */}
             <div style={{
               width: '32px', height: '32px', borderRadius: '50%', flexShrink: 0,
-              background: msg.role === 'assistant' ? 'linear-gradient(135deg, #14b8a6, #6366f1)' : 'linear-gradient(135deg, #14b8a6, #10b981)',
+              background: msg.role === 'assistant' ? 'linear-gradient(135deg, #9333ea, #0ea5e9)' : 'linear-gradient(135deg, #9333ea, #7c3aed)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: msg.role === 'assistant' ? '14px' : '11px',
-              fontWeight: 700, color: '#042f2e',
+              fontWeight: 700, color: msg.role === 'assistant' ? '#d8b4fe' : 'white',
             }}>
               {msg.role === 'assistant' ? '✦' : 'A'}
             </div>
@@ -204,9 +204,9 @@ export default function AdvisorPage() {
               <div style={{
                 padding: '12px 16px',
                 borderRadius: msg.role === 'user' ? '14px 4px 14px 14px' : '4px 14px 14px 14px',
-                background: msg.role === 'user' ? '#14b8a6' : '#f8fafb',
-                border: msg.role === 'user' ? 'none' : '1px solid #e5eaed',
-                color: msg.role === 'user' ? '#042f2e' : '#111820',
+                background: msg.role === 'user' ? '#9333ea' : '#f9f5ff',
+                border: msg.role === 'user' ? 'none' : '1px solid #e9d5ff',
+                color: msg.role === 'user' ? 'white' : '#0f0d1a',
                 fontSize: '14px', lineHeight: 1.65,
               }}>
                 {msg.content ? (

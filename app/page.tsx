@@ -1,14 +1,15 @@
 'use client'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import { getIcon } from '@/lib/icon-map'
 
 const FEATURES = [
-  { icon: '🧠', title: 'AI Financial Advisor', desc: 'Claude analyzes your complete financial picture and tells you exactly what to do — not just what happened.' },
-  { icon: '📊', title: 'Unified Dashboard', desc: 'Income, expenses, investments, and net worth — all in one place, updated in real time.' },
-  { icon: '🔮', title: 'Cashflow Forecasting', desc: 'See 90 days into the future. Get warned before you run short, not after.' },
-  { icon: '💬', title: 'Conversational Advisor', desc: '"Should I pay off debt or invest?" Ask anything. Get answers grounded in your real financial data.' },
-  { icon: '🎯', title: 'Goal Tracking', desc: 'Set financial goals and let AI optimize your path to reach them faster.' },
-  { icon: '⚡', title: 'Proactive Insights', desc: 'Weekly AI summaries surface risks, savings opportunities, and investment suggestions automatically.' },
+  { icon: 'brain', title: 'AI Financial Advisor', desc: 'Claude analyzes your complete financial picture and tells you exactly what to do — not just what happened.' },
+  { icon: 'barChart', title: 'Unified Dashboard', desc: 'Income, expenses, investments, and net worth — all in one place, updated in real time.' },
+  { icon: 'eye', title: 'Cashflow Forecasting', desc: 'See 90 days into the future. Get warned before you run short, not after.' },
+  { icon: 'messageCircle', title: 'Conversational Advisor', desc: '"Should I pay off debt or invest?" Ask anything. Get answers grounded in your real financial data.' },
+  { icon: 'target', title: 'Goal Tracking', desc: 'Set financial goals and let AI optimize your path to reach them faster.' },
+  { icon: 'zap', title: 'Proactive Insights', desc: 'Weekly AI summaries surface risks, savings opportunities, and investment suggestions automatically.' },
 ]
 
 const STATS = [
@@ -42,34 +43,34 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div style={{ fontFamily: 'var(--font-dm-sans, DM Sans, sans-serif)', background: '#080c10', color: '#f8fafb', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div style={{ background: '#080c10', color: '#f8fafb', minHeight: '100vh', overflowX: 'hidden' }}>
 
       {/* Nav */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
         padding: '0 2rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: scrollY > 40 ? 'rgba(8,12,16,0.92)' : 'transparent',
+            background: scrollY > 40 ? 'rgba(243,232,255,0.95)' : 'transparent',
         backdropFilter: scrollY > 40 ? 'blur(20px)' : 'none',
-        borderBottom: scrollY > 40 ? '1px solid rgba(255,255,255,0.06)' : 'none',
+        borderBottom: scrollY > 40 ? '1px solid rgba(147,51,234,0.1)' : 'none',
         transition: 'all 0.3s ease',
       }}>
         <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '20px', letterSpacing: '-0.02em' }}>
-          <span style={{ color: '#14b8a6' }}>Flow</span><span style={{ color: '#f8fafb' }}>AI</span>
+          <span style={{ color: '#9333ea' }}>Flow</span><span style={{ color: '#f8fafb' }}>AI</span>
         </div>
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <a href="#features" style={{ fontSize: '14px', color: '#9aaab4', textDecoration: 'none', transition: 'color 0.15s' }}
+          <a href="#features" style={{ fontSize: '14px', color: '#9370db', textDecoration: 'none', transition: 'color 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#f8fafb')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#9aaab4')}>Features</a>
-          <a href="#pricing" style={{ fontSize: '14px', color: '#9aaab4', textDecoration: 'none', transition: 'color 0.15s' }}
+            onMouseLeave={e => (e.currentTarget.style.color = '#9370db')}>Features</a>
+          <a href="#pricing" style={{ fontSize: '14px', color: '#9370db', textDecoration: 'none', transition: 'color 0.15s' }}
             onMouseEnter={e => (e.currentTarget.style.color = '#f8fafb')}
-            onMouseLeave={e => (e.currentTarget.style.color = '#9aaab4')}>Pricing</a>
+            onMouseLeave={e => (e.currentTarget.style.color = '#9370db')}>Pricing</a>
           <Link href="/dashboard" style={{
-            padding: '8px 20px', background: '#14b8a6', color: '#042f2e', borderRadius: '100px',
+            padding: '8px 20px', background: '#9333ea', color: 'white', borderRadius: '100px',
             fontSize: '13px', fontWeight: 600, textDecoration: 'none', letterSpacing: '0.01em',
             transition: 'all 0.15s',
           }}
-            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#0d9488' }}
-            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#14b8a6' }}>
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#7c3aed' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = '#9333ea' }}>
             Open App →
           </Link>
         </div>
@@ -78,19 +79,19 @@ export default function HomePage() {
       {/* Hero */}
       <section style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '8rem 2rem 4rem', position: 'relative' }}>
         {/* Radial glow */}
-        <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '400px', background: 'radial-gradient(ellipse, rgba(20,184,166,0.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '400px', background: 'radial-gradient(ellipse, rgba(147,51,234,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
         {/* Grid lines */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
 
         <div style={{ position: 'relative', maxWidth: '760px' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: 'rgba(20,184,166,0.1)', border: '1px solid rgba(20,184,166,0.2)', borderRadius: '100px', fontSize: '12px', color: '#5eead4', marginBottom: '2rem', letterSpacing: '0.05em', fontWeight: 500 }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#14b8a6', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: 'rgba(147,51,234,0.1)', border: '1px solid rgba(147,51,234,0.2)', borderRadius: '100px', fontSize: '12px', color: '#c084fc', marginBottom: '2rem', letterSpacing: '0.05em', fontWeight: 500 }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#9333ea', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
             AI-powered by Claude — Anthropic
           </div>
 
-          <h1 style={{ fontFamily: 'Syne, sans-serif', fontSize: 'clamp(2.8rem, 8vw, 5.5rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.5rem' }}>
+          <h1 style={{ fontSize: 'clamp(2.8rem, 8vw, 5.5rem)', fontWeight: 800, lineHeight: 1.05, letterSpacing: '-0.04em', marginBottom: '1.5rem' }}>
             Your money,<br />
-            <span style={{ color: '#14b8a6' }}>finally thinking</span><br />
+            <span style={{ color: '#9333ea' }}>finally thinking</span><br />
             for itself.
           </h1>
 
@@ -100,13 +101,13 @@ export default function HomePage() {
 
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/dashboard" style={{
-              padding: '14px 32px', background: '#14b8a6', color: '#042f2e', borderRadius: '100px',
+              padding: '14px 32px', background: '#9333ea', color: 'white', borderRadius: '100px',
               fontSize: '15px', fontWeight: 700, textDecoration: 'none', letterSpacing: '-0.01em',
-              boxShadow: '0 0 40px rgba(20,184,166,0.3)',
+              boxShadow: '0 0 40px rgba(147,51,234,0.3)',
               transition: 'all 0.2s',
             }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 60px rgba(20,184,166,0.4)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 40px rgba(20,184,166,0.3)' }}>
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 60px rgba(147,51,234,0.4)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 40px rgba(147,51,234,0.3)' }}>
               Start for free — no credit card
             </Link>
             <a href="#features" style={{
@@ -131,7 +132,7 @@ export default function HomePage() {
         <div style={{ maxWidth: '900px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '2rem', textAlign: 'center' }}>
           {STATS.map((s) => (
             <div key={s.label}>
-              <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '2rem', fontWeight: 800, color: '#14b8a6', letterSpacing: '-0.02em' }}>{s.value}</div>
+              <div style={{ fontFamily: 'Syne, sans-serif', fontSize: '2rem', fontWeight: 800, color: '#9333ea', letterSpacing: '-0.02em' }}>{s.value}</div>
               <div style={{ fontSize: '12px', color: '#627282', marginTop: '4px' }}>{s.label}</div>
             </div>
           ))}
@@ -157,9 +158,14 @@ export default function HomePage() {
                 border: '1px solid rgba(255,255,255,0.07)',
                 transition: 'all 0.2s',
               }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(20,184,166,0.05)'; el.style.border = '1px solid rgba(20,184,166,0.2)'; el.style.transform = 'translateY(-2px)' }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(147,51,234,0.05)'; el.style.border = '1px solid rgba(147,51,234,0.2)'; el.style.transform = 'translateY(-2px)' }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background = 'rgba(255,255,255,0.03)'; el.style.border = '1px solid rgba(255,255,255,0.07)'; el.style.transform = 'translateY(0)' }}>
-                <div style={{ fontSize: '28px', marginBottom: '12px' }}>{f.icon}</div>
+                <div style={{ fontSize: '28px', marginBottom: '12px', color: '#9333ea' }}>
+                  {(() => {
+                    const Icon = getIcon(f.icon)
+                    return Icon ? <Icon size={32} /> : null
+                  })()}
+                </div>
                 <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '16px', marginBottom: '8px', letterSpacing: '-0.01em' }}>{f.title}</div>
                 <div style={{ fontSize: '14px', color: '#9aaab4', lineHeight: 1.6 }}>{f.desc}</div>
               </div>
@@ -214,24 +220,24 @@ export default function HomePage() {
             ].map((p) => (
               <div key={p.plan} style={{
                 padding: '2rem', borderRadius: '20px',
-                background: p.highlight ? 'rgba(20,184,166,0.08)' : 'rgba(255,255,255,0.03)',
-                border: p.highlight ? '1px solid rgba(20,184,166,0.3)' : '1px solid rgba(255,255,255,0.07)',
+                background: p.highlight ? 'rgba(147,51,234,0.08)' : 'rgba(255,255,255,0.03)',
+                border: p.highlight ? '1px solid rgba(147,51,234,0.3)' : '1px solid rgba(255,255,255,0.07)',
                 textAlign: 'left',
               }}>
-                {p.highlight && <div style={{ fontSize: '11px', fontWeight: 600, color: '#14b8a6', letterSpacing: '0.08em', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Most popular</div>}
+                {p.highlight && <div style={{ fontSize: '11px', fontWeight: 600, color: '#9333ea', letterSpacing: '0.08em', marginBottom: '0.5rem', textTransform: 'uppercase' }}>Most popular</div>}
                 <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.3rem', marginBottom: '0.25rem' }}>{p.plan}</div>
-                <div style={{ fontSize: '2.5rem', fontWeight: 800, fontFamily: 'Syne, sans-serif', color: p.highlight ? '#14b8a6' : '#f8fafb', letterSpacing: '-0.04em', marginBottom: '0.25rem' }}>{p.price}</div>
+                <div style={{ fontSize: '2.5rem', fontWeight: 800, fontFamily: 'Syne, sans-serif', color: p.highlight ? '#9333ea' : '#f8fafb', letterSpacing: '-0.04em', marginBottom: '0.25rem' }}>{p.price}</div>
                 <div style={{ fontSize: '13px', color: '#627282', marginBottom: '1.5rem' }}>{p.period}</div>
                 {p.features.map((f) => (
                   <div key={f} style={{ fontSize: '14px', color: '#9aaab4', padding: '5px 0', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                    <span style={{ color: '#14b8a6', flexShrink: 0 }}>✓</span> {f}
+                    <span style={{ color: '#9333ea', flexShrink: 0 }}>✓</span> {f}
                   </div>
                 ))}
                 <Link href="/dashboard" style={{
                   display: 'block', marginTop: '1.5rem', textAlign: 'center',
                   padding: '11px 20px', borderRadius: '100px',
-                  background: p.highlight ? '#14b8a6' : 'rgba(255,255,255,0.08)',
-                  color: p.highlight ? '#042f2e' : '#f8fafb',
+                  background: p.highlight ? '#9333ea' : 'rgba(255,255,255,0.08)',
+                  color: p.highlight ? 'white' : '#f8fafb',
                   fontSize: '14px', fontWeight: 600, textDecoration: 'none',
                   transition: 'all 0.15s',
                 }}>
@@ -251,9 +257,9 @@ export default function HomePage() {
           </h2>
           <p style={{ color: '#9aaab4', marginBottom: '2rem', fontSize: '16px' }}>Setup takes 3 minutes. Your first AI insights arrive in seconds.</p>
           <Link href="/dashboard" style={{
-            display: 'inline-block', padding: '16px 40px', background: '#14b8a6', color: '#042f2e',
+            display: 'inline-block', padding: '16px 40px', background: '#9333ea', color: 'white',
             borderRadius: '100px', fontSize: '16px', fontWeight: 700, textDecoration: 'none',
-            letterSpacing: '-0.01em', boxShadow: '0 0 60px rgba(20,184,166,0.3)',
+            letterSpacing: '-0.01em', boxShadow: '0 0 60px rgba(147,51,234,0.3)',
           }}>
             Open FlowAI — it&apos;s free to start
           </Link>
@@ -263,7 +269,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer style={{ padding: '2rem', borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center', fontSize: '13px', color: '#627282' }}>
         <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, marginBottom: '0.5rem' }}>
-          <span style={{ color: '#14b8a6' }}>Flow</span><span>AI</span>
+          <span style={{ color: '#9333ea' }}>Flow</span><span>AI</span>
         </div>
         <div>Not financial advice. AI responses are informational only. Always consult a licensed financial advisor for major decisions.</div>
         <div style={{ marginTop: '0.5rem' }}>© 2026 FlowAI · Privacy · Terms</div>

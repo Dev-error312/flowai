@@ -64,7 +64,7 @@ export default function LoginPage() {
 
   const inp: React.CSSProperties = {
     width: '100%', padding: '11px 14px', borderRadius: '10px',
-    border: '1px solid #e5eaed', fontSize: '15px', fontFamily: 'DM Sans, sans-serif',
+    border: '1px solid #e5eaed', fontSize: '15px',
     color: '#111820', outline: 'none', background: '#f8fafb', boxSizing: 'border-box',
     transition: 'border-color 0.15s',
   }
@@ -75,15 +75,15 @@ export default function LoginPage() {
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <Link href="/" style={{ textDecoration: 'none' }}>
-            <div style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '28px', letterSpacing: '-0.04em' }}>
-              <span style={{ color: '#14b8a6' }}>Flow</span><span style={{ color: '#111820' }}>AI</span>
+            <div style={{ fontWeight: 800, fontSize: '28px', letterSpacing: '-0.04em' }}>
+              <span style={{ color: '#9333ea' }}>Flow</span><span style={{ color: '#111820' }}>AI</span>
             </div>
           </Link>
           <div style={{ color: '#9aaab4', fontSize: '14px', marginTop: '4px' }}>Your AI financial advisor</div>
         </div>
 
         <div style={{ background: 'white', borderRadius: '18px', padding: '2rem', border: '1px solid #e5eaed', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
-          <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 700, fontSize: '22px', color: '#111820', marginBottom: '0.25rem' }}>Welcome back</h1>
+          <h1 style={{ fontWeight: 700, fontSize: '22px', color: '#111820', marginBottom: '0.25rem' }}>Welcome back</h1>
           <p style={{ color: '#9aaab4', fontSize: '14px', marginBottom: '1.5rem' }}>Sign in to your account</p>
 
           {/* Google OAuth */}
@@ -91,7 +91,7 @@ export default function LoginPage() {
             width: '100%', padding: '11px', borderRadius: '10px', border: '1px solid #e5eaed',
             background: 'white', fontSize: '14px', fontWeight: 500, cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
-            color: '#111820', marginBottom: '1rem', fontFamily: 'DM Sans, sans-serif',
+            color: '#111820', marginBottom: '1rem',
             transition: 'all 0.15s',
           }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#f8fafb' }}
@@ -165,16 +165,16 @@ export default function LoginPage() {
 
             <button type="submit" disabled={loading} style={{
               width: '100%', padding: '12px', borderRadius: '10px', border: 'none',
-              background: loading ? '#e5eaed' : '#14b8a6', color: loading ? '#9aaab4' : '#042f2e',
+              background: loading ? '#e9d5ff' : '#9333ea', color: loading ? '#9aaab4' : 'white',
               fontSize: '15px', fontWeight: 600, cursor: loading ? 'not-allowed' : 'pointer',
-              fontFamily: 'DM Sans, sans-serif', transition: 'all 0.15s',
+              transition: 'all 0.15s',
             }}>
               {loading ? 'Signing in...' : mode === 'password' ? 'Sign in' : 'Send magic link'}
             </button>
           </form>
 
           <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '13px', color: '#9aaab4' }}>
-            No account? <Link href="/auth/signup" style={{ color: '#14b8a6', textDecoration: 'none', fontWeight: 500 }}>Sign up free</Link>
+            No account? <Link href="/auth/signup" style={{ color: '#9333ea', textDecoration: 'none', fontWeight: 500 }}>Sign up free</Link>
           </div>
         </div>
 
@@ -182,7 +182,7 @@ export default function LoginPage() {
         <div style={{ textAlign: 'center', marginTop: '1rem' }}>
           <button onClick={handleDemo} style={{
             background: 'transparent', border: 'none', color: '#9aaab4', fontSize: '13px', cursor: 'pointer',
-            textDecoration: 'underline', textDecorationColor: 'transparent', fontFamily: 'DM Sans, sans-serif',
+            textDecoration: 'underline', textDecorationColor: 'transparent',
           }}
             onMouseEnter={e => { (e.currentTarget).style.color = '#627282' }}
             onMouseLeave={e => { (e.currentTarget).style.color = '#9aaab4' }}>

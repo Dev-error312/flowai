@@ -14,12 +14,12 @@ const PORTFOLIO_HISTORY = [
 ]
 
 const TYPE_COLORS: Record<string, string> = {
-  etf: '#14b8a6',
-  stock: '#6366f1',
+  etf: '#9333ea',
+  stock: '#0ea5e9',
   crypto: '#f59e0b',
-  bond: '#22c55e',
+  bond: '#16a34a',
   real_estate: '#ec4899',
-  mutual_fund: '#3b82f6',
+  mutual_fund: '#06b6d4',
   other: '#9aaab4',
 }
 
@@ -53,7 +53,7 @@ export default function InvestmentsPage() {
     <div style={{ maxWidth: '1100px' }}>
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
-        <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.75rem', letterSpacing: '-0.03em', color: '#111820', marginBottom: '4px' }}>Investments</h1>
+        <h1 style={{ fontWeight: 800, fontSize: '1.75rem', letterSpacing: '-0.03em', color: '#111820', marginBottom: '4px' }}>Investments</h1>
         <p style={{ color: '#9aaab4', fontSize: '14px' }}>Portfolio overview · Last updated today</p>
       </div>
 
@@ -67,7 +67,7 @@ export default function InvestmentsPage() {
         ].map(m => (
           <div key={m.label} style={{ background: 'white', border: '1px solid #e5eaed', borderRadius: '12px', padding: '1rem 1.25rem', boxShadow: '0 1px 4px rgba(0,0,0,0.04)' }}>
             <div style={{ fontSize: '11px', color: '#9aaab4', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>{m.label}</div>
-            <div style={{ fontSize: '22px', fontWeight: 700, color: m.color, fontFamily: 'Syne, sans-serif', letterSpacing: '-0.02em' }}>{m.value}</div>
+            <div style={{ fontSize: '22px', fontWeight: 700, color: m.color, letterSpacing: '-0.02em' }}>{m.value}</div>
             <div style={{ fontSize: '11px', color: '#9aaab4', marginTop: '2px' }}>{m.sub}</div>
           </div>
         ))}

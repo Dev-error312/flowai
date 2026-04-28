@@ -47,9 +47,9 @@ function AddTransactionModal({ onClose, onAdd }: { onClose: () => void; onAdd: (
           {(['income', 'expense', 'transfer'] as TransactionType[]).map(t => (
             <button key={t} onClick={() => setForm(f => ({ ...f, type: t }))} style={{
               flex: 1, padding: '8px', borderRadius: '8px', border: '1.5px solid',
-              borderColor: form.type === t ? (t === 'income' ? '#22c55e' : t === 'expense' ? '#f43f5e' : '#14b8a6') : '#e5eaed',
-              background: form.type === t ? (t === 'income' ? '#f0fdf4' : t === 'expense' ? '#fff1f2' : '#f0fdf9') : 'transparent',
-              color: form.type === t ? (t === 'income' ? '#15803d' : t === 'expense' ? '#be123c' : '#0f766e') : '#9aaab4',
+              borderColor: form.type === t ? (t === 'income' ? '#16a34a' : t === 'expense' ? '#ef4444' : '#9333ea') : '#e9d5ff',
+              background: form.type === t ? (t === 'income' ? '#f0fdf4' : t === 'expense' ? '#fef2f2' : '#f3e8ff') : 'transparent',
+              color: form.type === t ? (t === 'income' ? '#16a34a' : t === 'expense' ? '#ef4444' : '#9333ea') : '#9aaab4',
               fontSize: '13px', fontWeight: 500, cursor: 'pointer', textTransform: 'capitalize', transition: 'all 0.15s',
             }}>
               {t}
@@ -167,8 +167,8 @@ export default function TransactionsPage() {
           <p style={{ color: '#9aaab4', fontSize: '14px' }}>{filtered.length} transactions</p>
         </div>
         <button onClick={() => setShowModal(true)} style={{
-          padding: '10px 20px', background: '#14b8a6', border: 'none', borderRadius: '10px',
-          color: '#042f2e', fontSize: '14px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
+            padding: '10px 20px', background: '#9333ea', border: 'none', borderRadius: '10px',
+            color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px',
           transition: 'all 0.15s',
         }}>
           + Add Transaction

@@ -5,7 +5,7 @@ import type {
 
 // ─── Accounts ───────────────────────────────
 export const MOCK_ACCOUNTS: Account[] = [
-  { id: 'acc-1', user_id: 'user-1', name: 'Chase Checking', type: 'checking', institution: 'Chase', balance: 8420.50, currency: 'USD', color: '#14b8a6', icon: '🏦', is_active: true, created_at: '2024-01-01' },
+  { id: 'acc-1', user_id: 'user-1', name: 'Chase Checking', type: 'checking', institution: 'Chase', balance: 8420.50, currency: 'USD', color: '#14b8a6', icon: 'building', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-2', user_id: 'user-1', name: 'Ally Savings', type: 'savings', institution: 'Ally Bank', balance: 24800.00, currency: 'USD', color: '#22c55e', icon: '💰', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-3', user_id: 'user-1', name: 'Fidelity 401k', type: 'investment', institution: 'Fidelity', balance: 87340.00, currency: 'USD', color: '#6366f1', icon: '📈', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-4', user_id: 'user-1', name: 'Chase Sapphire', type: 'credit', institution: 'Chase', balance: 2340.00, currency: 'USD', color: '#f59e0b', icon: '💳', is_active: true, created_at: '2024-01-01' },

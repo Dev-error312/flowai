@@ -4,7 +4,7 @@ import { MOCK_ACCOUNTS } from '@/lib/mock-data'
 
 const TABS = [
   { id: 'profile',    label: 'Profile',    icon: '👤' },
-  { id: 'accounts',  label: 'Accounts',   icon: '🏦' },
+  { id: 'accounts',  label: 'Accounts',   icon: 'building' },
   { id: 'ai',        label: 'AI Settings', icon: '✦' },
   { id: 'notifications', label: 'Notifications', icon: '🔔' },
   { id: 'security',  label: 'Security',   icon: '🔒' },

@@ -7,10 +7,10 @@ import type { AIInsight } from '@/types'
 import Link from 'next/link'
 
 const SEVERITY_CONFIG = {
-  positive: { bg: '#f0fdf4', border: '#bbf7d0', icon: '✦', color: '#15803d' },
-  info:     { bg: '#eff6ff', border: '#bfdbfe', icon: '◈', color: '#1d4ed8' },
-  warning:  { bg: '#fffbeb', border: '#fde68a', icon: '⚠', color: '#b45309' },
-  critical: { bg: '#fff1f2', border: '#fecdd3', icon: '!', color: '#be123c' },
+  positive: { bg: '#f0fdf4', border: '#dcfce7', icon: '✦', color: '#16a34a' },
+  info:     { bg: '#eff6ff', border: '#dbeafe', icon: '◈', color: '#06b6d4' },
+  warning:  { bg: '#fffbeb', border: '#fef3c7', icon: '⚠', color: '#f59e0b' },
+  critical: { bg: '#fef2f2', border: '#fee2e2', icon: '!', color: '#ef4444' },
 }
 
 function InsightCard({ insight }: { insight: AIInsight }) {
@@ -38,23 +38,24 @@ function InsightCard({ insight }: { insight: AIInsight }) {
   )
 }
 
-function MetricCard({ label, value, change, changeLabel, color = '#14b8a6', icon }: {
+function MetricCard({ label, value, change, changeLabel, color = '#9333ea', icon }: {
   label: string; value: string; change?: number; changeLabel?: string; color?: string; icon?: string
 }) {
   const positive = (change ?? 0) >= 0
   return (
     <div style={{
-      background: 'white', borderRadius: '14px', padding: '1.25rem 1.4rem',
-      border: '1px solid #e5eaed', flex: 1,
-      boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
+      background: 'white', borderRadius: '16px', padding: '1.5rem',
+      border: '1px solid #e9d5ff', flex: 1,
+      boxShadow: '0 4px 12px rgba(147, 51, 234, 0.08)',
+      transition: 'all 0.3s ease',
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-        <div style={{ fontSize: '12px', color: '#9aaab4', fontWeight: 500, letterSpacing: '0.02em', textTransform: 'uppercase' }}>{label}</div>
-        {icon && <div style={{ fontSize: '20px' }}>{icon}</div>}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
+        <div style={{ fontSize: '11px', color: '#9370db', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase' }}>{label}</div>
+        {icon && <div style={{ fontSize: '22px', opacity: 0.8 }}>{icon}</div>}
       </div>
-      <div style={{ fontSize: '26px', fontWeight: 700, color: '#111820', fontFamily: 'Syne, sans-serif', letterSpacing: '-0.03em', marginBottom: '0.4rem' }}>{value}</div>
+      <div style={{ fontSize: '28px', fontWeight: 700, color: '#0f0d1a', marginBottom: '0.6rem', letterSpacing: '-0.02em' }}>{value}</div>
       {change !== undefined && (
-        <div style={{ fontSize: '12px', color: positive ? '#15803d' : '#be123c', display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <div style={{ fontSize: '12px', color: positive ? '#16a34a' : '#ef4444', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 500 }}>
           <span>{positive ? '↑' : '↓'}</span>
           <span>{Math.abs(change).toFixed(1)}% {changeLabel}</span>
         </div>
@@ -67,11 +68,11 @@ const CustomTooltip = ({ active, payload, label }: { active?: boolean, payload?:
   if (!active || !payload?.length) return null
   return (
     <div className="chart-tooltip">
-      <div style={{ fontWeight: 500, marginBottom: '6px', fontSize: '12px', color: '#627282' }}>{label}</div>
+      <div style={{ fontWeight: 600, marginBottom: '8px', fontSize: '12px', color: '#0f0d1a' }}>{label}</div>
       {payload.map((p, i) => (
-        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '16px', fontSize: '13px' }}>
-          <span style={{ color: p.color }}>{p.dataKey}</span>
-          <span style={{ fontWeight: 500 }}>{formatCurrency(p.value)}</span>
+        <div key={i} style={{ display: 'flex', justifyContent: 'space-between', gap: '20px', fontSize: '13px', marginBottom: i < payload.length - 1 ? '4px' : 0 }}>
+          <span style={{ color: '#5d4e7f', fontWeight: 500 }}>{p.dataKey}</span>
+          <span style={{ fontWeight: 600, color: '#0f0d1a' }}>{formatCurrency(p.value)}</span>
         </div>
       ))}
     </div>

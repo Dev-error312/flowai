@@ -116,7 +116,7 @@ function AddBudgetModal({ onClose, onAdd }: { onClose: () => void; onAdd: (b: Pa
 
         <div style={{ display: 'flex', gap: '10px' }}>
           <button onClick={onClose} style={{ flex: 1, padding: '10px', borderRadius: '10px', border: '1px solid #e5eaed', background: 'transparent', color: '#627282', fontSize: '14px', cursor: 'pointer' }}>Cancel</button>
-          <button onClick={handleSubmit} style={{ flex: 2, padding: '10px', borderRadius: '10px', background: '#14b8a6', border: 'none', color: '#042f2e', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>
+          <button onClick={handleSubmit} style={{ flex: 2, padding: '10px', borderRadius: '10px', background: '#9333ea', border: 'none', color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer' }}>
             Create Budget
           </button>
         </div>
@@ -157,8 +157,8 @@ export default function BudgetsPage() {
           <p style={{ color: '#9aaab4', fontSize: '14px' }}>November 2024 · {budgets.length} categories</p>
         </div>
         <button onClick={() => setShowModal(true)} style={{
-          padding: '10px 20px', background: '#14b8a6', border: 'none', borderRadius: '10px',
-          color: '#042f2e', fontSize: '14px', fontWeight: 600, cursor: 'pointer',
+          padding: '10px 20px', background: '#9333ea', border: 'none', borderRadius: '10px',
+          color: 'white', fontSize: '14px', fontWeight: 600, cursor: 'pointer',
         }}>
           + New Budget
         </button>

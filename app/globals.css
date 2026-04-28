@@ -1,38 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-syne: 'Syne', sans-serif;
-  --font-dm-sans: 'DM Sans', sans-serif;
-  --font-dm-mono: 'DM Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 
-  /* Brand */
-  --brand: #14b8a6;
-  --brand-light: #99f6df;
-  --brand-dark: #0d9488;
+  /* Brand - Purple */
+  --brand: #9333ea;
+  --brand-light: #d8b4fe;
+  --brand-dark: #6b21a8;
 
-  /* Surfaces */
+  /* Accent - Cyan */
+  --accent: #0ea5e9;
+  --accent-light: #7dd3fc;
+  --accent-dark: #0369a1;
+
+  /* Surfaces - Purple-tinted neutrals */
   --surface-0: #ffffff;
-  --surface-50: #f8fafb;
-  --surface-100: #f1f4f6;
-  --surface-200: #e5eaed;
-  --surface-800: #1e2830;
-  --surface-900: #111820;
+  --surface-50: #f9f5ff;
+  --surface-100: #f3e8ff;
+  --surface-200: #e9d5ff;
+  --surface-300: #ddd6fe;
+  --surface-800: #3f0f5c;
+  --surface-900: #1e1b4b;
 
   /* Text */
-  --text-primary: #111820;
-  --text-secondary: #465662;
-  --text-tertiary: #9aaab4;
+  --text-primary: #0f0d1a;
+  --text-secondary: #5d4e7f;
+  --text-tertiary: #9370db;
   --text-inverse: #ffffff;
 
   /* Semantic */
-  --positive: #22c55e;
-  --negative: #f43f5e;
+  --positive: #16a34a;
+  --negative: #ef4444;
   --warning: #f59e0b;
-  --info: #3b82f6;
+  --info: #06b6d4;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(147, 51, 234, 0.05);
+  --shadow-md: 0 4px 12px rgba(147, 51, 234, 0.08);
+  --shadow-lg: 0 8px 24px rgba(147, 51, 234, 0.12);
+  --shadow-xl: 0 12px 32px rgba(147, 51, 234, 0.15);
 
   /* Spacing */
   --nav-width: 240px;
@@ -66,7 +77,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--surface-300); }
 
 /* Selection */
-::selection { background: rgba(20, 184, 166, 0.15); color: var(--text-primary); }
+::selection { background: rgba(147, 51, 234, 0.2); color: var(--text-primary); }
 
 /* Focus */
 :focus-visible {
@@ -105,22 +116,22 @@ body {
 /* Recharts custom styles */
 .recharts-tooltip-wrapper .recharts-default-tooltip {
   background: var(--surface-0) !important;
-  border: 1px solid var(--surface-200) !important;
-  border-radius: 10px !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
-  font-family: var(--font-dm-sans) !important;
+  border: 1px solid #e9d5ff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(147, 51, 234, 0.12) !important;
+  font-family: var(--font-inter) !important;
   font-size: 13px !important;
 }
 
 /* Custom chart tooltip */
 .chart-tooltip {
   background: white;
-  border: 1px solid #e5eaed;
-  border-radius: 10px;
-  padding: 10px 14px;
+  border: 1px solid #e9d5ff;
+  border-radius: 12px;
+  padding: 12px 16px;
   font-size: 13px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  font-family: var(--font-dm-sans);
+  box-shadow: 0 8px 32px rgba(147, 51, 234, 0.12);
+  font-family: var(--font-inter);
 }
 
 /* Prose for AI messages */

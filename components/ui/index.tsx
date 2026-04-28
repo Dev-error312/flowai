@@ -11,15 +11,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', loading, children, disabled, ...props }, ref) => {
     const variants = {
-      primary: 'bg-brand-500 text-brand-950 hover:bg-brand-600 border-transparent',
-      secondary: 'bg-white text-surface-700 hover:bg-surface-50 border-surface-200',
+      primary: 'bg-gradient-to-r from-brand-500 to-brand-600 text-white hover:from-brand-600 hover:to-brand-700 border-transparent shadow-lg hover:shadow-xl hover:shadow-brand-500/50',
+      secondary: 'bg-white text-surface-700 hover:bg-surface-50 border-surface-200 shadow-sm',
       ghost: 'bg-transparent text-surface-600 hover:bg-surface-100 border-transparent',
-      danger: 'bg-negative-50 text-negative-700 hover:bg-negative-100 border-negative-200',
+      danger: 'bg-negative-50 text-negative-700 hover:bg-negative-100 border-negative-200 shadow-sm',
     }
     const sizes = {
-      sm: 'px-3 py-1.5 text-xs rounded-lg',
-      md: 'px-4 py-2 text-sm rounded-xl',
-      lg: 'px-6 py-3 text-base rounded-xl',
+      sm: 'px-3 py-1.5 text-xs rounded-lg font-medium',
+      md: 'px-4 py-2.5 text-sm rounded-xl font-medium',
+      lg: 'px-6 py-3 text-base rounded-xl font-semibold',
     }
 
     return (
@@ -60,8 +60,9 @@ export function Card({ className, hover, padding = 'md', children, ...props }: C
   return (
     <div
       className={cn(
-        'bg-white border border-surface-200 rounded-2xl shadow-sm',
-        hover && 'transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md cursor-pointer',
+        'bg-white border border-surface-200 rounded-2xl shadow-md',
+        'backdrop-blur-sm',
+        hover && 'transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:border-surface-300 cursor-pointer',
         paddings[padding],
         className
       )}
@@ -82,17 +83,17 @@ interface BadgeProps {
 
 export function Badge({ variant = 'neutral', size = 'sm', children, className }: BadgeProps) {
   const variants = {
-    positive: 'bg-positive-50 text-positive-700',
-    negative: 'bg-negative-50 text-negative-700',
-    neutral: 'bg-surface-100 text-surface-600',
-    brand: 'bg-brand-50 text-brand-700',
-    warning: 'bg-warning-50 text-warning-700',
-    info: 'bg-info-50 text-info-700',
+    positive: 'bg-positive-50 text-positive-700 border border-positive-100',
+    negative: 'bg-negative-50 text-negative-700 border border-negative-100',
+    neutral: 'bg-surface-100 text-surface-700 border border-surface-200',
+    brand: 'bg-brand-50 text-brand-700 border border-brand-200',
+    warning: 'bg-warning-50 text-warning-700 border border-warning-100',
+    info: 'bg-info-50 text-info-700 border border-info-100',
   }
-  const sizes = { sm: 'px-2 py-0.5 text-xs', md: 'px-3 py-1 text-sm' }
+  const sizes = { sm: 'px-2.5 py-1 text-xs font-medium', md: 'px-3.5 py-1.5 text-sm font-medium' }
 
   return (
-    <span className={cn('inline-flex items-center rounded-full font-medium', variants[variant], sizes[size], className)}>
+    <span className={cn('inline-flex items-center rounded-full', variants[variant], sizes[size], className)}>
       {children}
     </span>
   )
@@ -252,7 +253,7 @@ interface ProgressBarProps {
   animated?: boolean
 }
 
-export function ProgressBar({ value, max = 100, color = '#14b8a6', height = 6, animated = true }: ProgressBarProps) {
+export function ProgressBar({ value, max = 100, color = '#9333ea', height = 6, animated = true }: ProgressBarProps) {
   const pct = Math.min((value / max) * 100, 100)
   return (
     <div style={{ height, background: '#f1f4f6', borderRadius: height / 2, overflow: 'hidden' }}>
