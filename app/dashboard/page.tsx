@@ -7,10 +7,10 @@ import type { AIInsight } from '@/types'
 import Link from 'next/link'
 
 const SEVERITY_CONFIG = {
-  positive: { bg: '#f0fdf4', border: '#dcfce7', icon: '✦', color: '#16a34a' },
-  info:     { bg: '#eff6ff', border: '#dbeafe', icon: '◈', color: '#06b6d4' },
+  positive: { bg: '#f0fdf4', border: '#dcfce7', icon: '●', color: '#16a34a' },
+  info:     { bg: '#eff6ff', border: '#dbeafe', icon: 'ℹ', color: '#06b6d4' },
   warning:  { bg: '#fffbeb', border: '#fef3c7', icon: '⚠', color: '#f59e0b' },
-  critical: { bg: '#fef2f2', border: '#fee2e2', icon: '!', color: '#ef4444' },
+  critical: { bg: '#fef2f2', border: '#fee2e2', icon: '●', color: '#ef4444' },
 }
 
 function InsightCard({ insight }: { insight: AIInsight }) {
@@ -98,7 +98,7 @@ export default function DashboardPage() {
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.75rem', letterSpacing: '-0.03em', color: '#111820', marginBottom: '4px' }}>
-          Good morning, Alex 👋
+          Good morning, Alex
         </h1>
         <p style={{ color: '#9aaab4', fontSize: '14px' }}>Here&apos;s your financial snapshot for {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
       </div>
@@ -117,21 +117,21 @@ export default function DashboardPage() {
           value={formatCurrency(data.monthly_income)}
           change={data.monthly_income_change / data.monthly_income * 100}
           changeLabel="vs last month"
-          icon="💰"
+          icon="�"
         />
         <MetricCard
           label="Monthly Expenses"
           value={formatCurrency(data.monthly_expenses)}
           change={-(data.monthly_expenses_change / data.monthly_expenses * 100)}
           changeLabel="vs last month"
-          icon="💳"
+          icon="💸"
         />
         <MetricCard
           label="Savings Rate"
           value={`${data.savings_rate.toFixed(1)}%`}
           change={4.2}
           changeLabel="vs last month"
-          icon="📈"
+          icon="✓"
         />
       </div>
 

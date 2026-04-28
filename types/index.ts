@@ -77,10 +77,10 @@ export const DEFAULT_CATEGORIES: Omit<Category, 'id' | 'user_id'>[] = [
   { name: 'Personal Care', icon: '💆', color: '#a855f7', type: 'expense', is_system: true },
   { name: 'Savings', icon: 'building', color: '#22c55e', type: 'expense', is_system: true },
   { name: 'Investments', icon: '📈', color: '#10b981', type: 'expense', is_system: true },
-  { name: 'Debt Payments', icon: '💳', color: '#64748b', type: 'expense', is_system: true },
+  { name: 'Debt Payments', icon: 'creditCard', color: '#64748b', type: 'expense', is_system: true },
   { name: 'Other', icon: '📦', color: '#9aaab4', type: 'expense', is_system: true },
   // Income
-  { name: 'Salary', icon: '💰', color: '#22c55e', type: 'income', is_system: true },
+  { name: 'Salary', icon: 'dollarSign', color: '#22c55e', type: 'income', is_system: true },
   { name: 'Freelance', icon: '💼', color: '#14b8a6', type: 'income', is_system: true },
   { name: 'Investment Returns', icon: '📈', color: '#10b981', type: 'income', is_system: true },
   { name: 'Rental Income', icon: '🏘️', color: '#6366f1', type: 'income', is_system: true },

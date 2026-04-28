@@ -19,6 +19,8 @@ import {
   Home,
   Umbrella,
   BookOpen,
+  CreditCard,
+  Bell,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -34,6 +36,7 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   zap: Zap,
   messageCircle: MessageCircle,
   brain: Brain,
+  bell: Bell,
   
   // Financial Icons
   dollarSign: DollarSign,
@@ -41,6 +44,7 @@ export const ICON_MAP: Record<string, LucideIcon> = {
   barChart: BarChart3,
   eye: Eye,
   gift: Gift,
+  creditCard: CreditCard,
   
   // Status Icons
   check: CheckCircle,

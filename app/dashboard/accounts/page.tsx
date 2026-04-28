@@ -6,9 +6,9 @@ import type { Account, AccountType } from '@/types'
 
 const TYPE_CONFIG: Record<AccountType, { icon: string; label: string; color: string }> = {
   checking:   { icon: 'building', label: 'Checking',   color: '#9333ea' },
-  savings:    { icon: '💰', label: 'Savings',    color: '#16a34a' },
+  savings:    { icon: 'building', label: 'Savings',    color: '#16a34a' },
   investment: { icon: '📈', label: 'Investment', color: '#0ea5e9' },
-  credit:     { icon: '💳', label: 'Credit',     color: '#f59e0b' },
+  credit:     { icon: 'creditCard', label: 'Credit',     color: '#f59e0b' },
   loan:       { icon: '🏠', label: 'Loan',       color: '#ef4444' },
   cash:       { icon: '💵', label: 'Cash',       color: '#9aaab4' },
 }

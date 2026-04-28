@@ -105,7 +105,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ position: 'relative' }}>
               <Link href="/dashboard/advisor" style={{ textDecoration: 'none' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#f1f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '16px' }}>🔔</div>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#f9f5ff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '16px', color: '#9333ea' }}>🔔</div>
               </Link>
               <div style={{ position: 'absolute', top: '6px', right: '6px', width: '8px', height: '8px', borderRadius: '50%', background: '#f43f5e', border: '2px solid white' }} />
             </div>

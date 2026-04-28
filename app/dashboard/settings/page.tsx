@@ -6,9 +6,9 @@ const TABS = [
   { id: 'profile',    label: 'Profile',    icon: '👤' },
   { id: 'accounts',  label: 'Accounts',   icon: 'building' },
   { id: 'ai',        label: 'AI Settings', icon: '✦' },
-  { id: 'notifications', label: 'Notifications', icon: '🔔' },
+  { id: 'notifications', label: 'Notifications', icon: 'bell' },
   { id: 'security',  label: 'Security',   icon: '🔒' },
-  { id: 'billing',   label: 'Billing',    icon: '💳' },
+  { id: 'billing',   label: 'Billing',    icon: 'creditCard' },
 ]
 
 const CURRENCIES = ['USD', 'EUR', 'GBP', 'NPR', 'INR', 'AUD', 'CAD', 'JPY', 'CHF']

@@ -6,9 +6,9 @@ import type {
 // ─── Accounts ───────────────────────────────
 export const MOCK_ACCOUNTS: Account[] = [
   { id: 'acc-1', user_id: 'user-1', name: 'Chase Checking', type: 'checking', institution: 'Chase', balance: 8420.50, currency: 'USD', color: '#14b8a6', icon: 'building', is_active: true, created_at: '2024-01-01' },
-  { id: 'acc-2', user_id: 'user-1', name: 'Ally Savings', type: 'savings', institution: 'Ally Bank', balance: 24800.00, currency: 'USD', color: '#22c55e', icon: '💰', is_active: true, created_at: '2024-01-01' },
+  { id: 'acc-2', user_id: 'user-1', name: 'Ally Savings', type: 'savings', institution: 'Ally Bank', balance: 24800.00, currency: 'USD', color: '#22c55e', icon: 'building', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-3', user_id: 'user-1', name: 'Fidelity 401k', type: 'investment', institution: 'Fidelity', balance: 87340.00, currency: 'USD', color: '#6366f1', icon: '📈', is_active: true, created_at: '2024-01-01' },
-  { id: 'acc-4', user_id: 'user-1', name: 'Chase Sapphire', type: 'credit', institution: 'Chase', balance: 2340.00, currency: 'USD', color: '#f59e0b', icon: '💳', is_active: true, created_at: '2024-01-01' },
+  { id: 'acc-4', user_id: 'user-1', name: 'Chase Sapphire', type: 'credit', institution: 'Chase', balance: 2340.00, currency: 'USD', color: '#f59e0b', icon: 'creditCard', is_active: true, created_at: '2024-01-01' },
   { id: 'acc-5', user_id: 'user-1', name: 'Robinhood', type: 'investment', institution: 'Robinhood', balance: 15600.00, currency: 'USD', color: '#10b981', icon: '🦾', is_active: true, created_at: '2024-01-01' },
 ]
 
@@ -23,7 +23,7 @@ export const MOCK_CATEGORIES: Category[] = [
   { id: 'cat-7', user_id: 'user-1', name: 'Shopping', icon: '🛍️', color: '#ec4899', type: 'expense', is_system: true },
   { id: 'cat-8', user_id: 'user-1', name: 'Healthcare', icon: '🏥', color: '#ef4444', type: 'expense', is_system: true },
   { id: 'cat-9', user_id: 'user-1', name: 'Investments', icon: '📈', color: '#10b981', type: 'expense', is_system: true },
-  { id: 'cat-10', user_id: 'user-1', name: 'Salary', icon: '💰', color: '#22c55e', type: 'income', is_system: true },
+  { id: 'cat-10', user_id: 'user-1', name: 'Salary', icon: 'dollarSign', color: '#22c55e', type: 'income', is_system: true },
   { id: 'cat-11', user_id: 'user-1', name: 'Freelance', icon: '💼', color: '#14b8a6', type: 'income', is_system: true },
 ]
 

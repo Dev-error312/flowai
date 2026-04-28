@@ -89,7 +89,7 @@ function GoalCard({ goal }: { goal: Goal }) {
 function NewGoalModal({ onClose, onAdd }: { onClose: () => void; onAdd: (g: Goal) => void }) {
   const [form, setForm] = useState({
     name: '', target_amount: '', current_amount: '0', target_date: '',
-    category: 'other' as Goal['category'], icon: '🎯',
+    category: 'other' as Goal['category'], icon: 'target',
   })
 
   const GOAL_CATEGORIES = [
@@ -99,7 +99,7 @@ function NewGoalModal({ onClose, onAdd }: { onClose: () => void; onAdd: (g: Goal
     { value: 'retirement',label: '🏖️ Retirement',     icon: '🏖️' },
     { value: 'education', label: '📚 Education',       icon: '📚' },
     { value: 'car',       label: '🚗 Car',             icon: '🚗' },
-    { value: 'other',     label: '🎯 Other',           icon: '🎯' },
+    { value: 'other',     label: 'Other',           icon: 'target' },
   ]
 
   const handleSubmit = () => {
@@ -116,7 +116,7 @@ function NewGoalModal({ onClose, onAdd }: { onClose: () => void; onAdd: (g: Goal
       current_amount: current,
       target_date: form.target_date,
       category: form.category,
-      icon: selectedCat?.icon ?? '🎯',
+      icon: selectedCat?.icon ?? 'target',
       color: '#14b8a6',
       progress_percent: (current / target) * 100,
       monthly_needed: form.target_date ? (target - current) / Math.max(1, Math.ceil((new Date(form.target_date).getTime() - Date.now()) / (30 * 24 * 60 * 60 * 1000))) : undefined,
