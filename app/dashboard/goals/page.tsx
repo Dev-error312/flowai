@@ -209,7 +209,7 @@ export default function GoalsPage() {
   const totalSaved = goals.reduce((s, g) => s + g.current_amount, 0)
 
   return (
-    <div style={{ maxWidth: '960px' }}>
+    <div style={{ width: '100%' }}>
       {showModal && <NewGoalModal onClose={() => setShowModal(false)} onAdd={g => setGoals(prev => [...prev, g])} />}
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>

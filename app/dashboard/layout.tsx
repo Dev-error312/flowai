@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { getIcon } from '@/lib/icon-map'
-import { Settings, Bell } from 'lucide-react'
+import { Settings } from 'lucide-react'
+import { DashboardHeader } from '@/components/dashboard-header'
 
 const NAV_ITEMS = [
   { href: '/dashboard',              label: 'Dashboard',    icon: 'barChart' },
@@ -24,8 +25,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div style={{ display: 'flex', minHeight: '100vh', background: '#f1f4f6' }}>
       <aside style={{
         width: collapsed ? '64px' : '224px', flexShrink: 0, background: '#1e1b4b',
-        display: 'flex', flexDirection: 'column', position: 'fixed',
-        top: 0, left: 0, bottom: 0, zIndex: 50,
+        display: 'flex', flexDirection: 'column', position: 'relative',
         transition: 'width 0.25s cubic-bezier(0.16,1,0.3,1)', overflow: 'hidden',
       }}>
         <div style={{ padding: collapsed ? '1.25rem 0' : '1.25rem 1rem 1rem', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: collapsed ? 'center' : 'space-between', minHeight: '64px' }}>
@@ -97,24 +97,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      <main style={{ flex: 1, marginLeft: collapsed ? '64px' : '224px', minHeight: '100vh', display: 'flex', flexDirection: 'column', transition: 'margin-left 0.25s cubic-bezier(0.16,1,0.3,1)' }}>
-        <header style={{ height: '60px', background: 'white', borderBottom: '1px solid #e9d5ff', padding: '0 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'sticky', top: 0, zIndex: 40 }}>
-          <div style={{ fontSize: '13px', color: '#9aaab4' }}>
-            {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ position: 'relative' }}>
-              <Link href="/dashboard/advisor" style={{ textDecoration: 'none' }}>
-                <Bell size={18} style={{ cursor: 'pointer', color: '#9333ea' }} />
-              </Link>
-              <div style={{ position: 'absolute', top: '6px', right: '6px', width: '8px', height: '8px', borderRadius: '50%', background: '#f43f5e', border: '2px solid white' }} />
-            </div>
-            <Link href="/dashboard/settings" style={{ textDecoration: 'none' }}>
-              <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'linear-gradient(135deg, #9333ea, #7c3aed)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 700, color: 'white', cursor: 'pointer' }}>A</div>
-            </Link>
-          </div>
-        </header>
-        <div style={{ flex: 1, padding: '1.5rem', background: '#f9f5ff' }}>{children}</div>
+      <main style={{ flex: 1, minHeight: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <DashboardHeader />
+        <div style={{ flex: 1, padding: '1.5rem', background: '#f9f5ff', width: '100%', overflow: 'auto' }}>{children}</div>
       </main>
     </div>
   )

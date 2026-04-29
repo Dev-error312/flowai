@@ -50,7 +50,7 @@ export default function InvestmentsPage() {
   const investmentAccounts = MOCK_ACCOUNTS.filter(a => a.type === 'investment')
 
   return (
-    <div style={{ maxWidth: '1100px' }}>
+    <div style={{ width: '100%' }}>
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ fontWeight: 800, fontSize: '1.75rem', letterSpacing: '-0.03em', color: '#111820', marginBottom: '4px' }}>Investments</h1>

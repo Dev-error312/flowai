@@ -152,7 +152,7 @@ export default function BudgetsPage() {
   }
 
   return (
-    <div style={{ maxWidth: '960px' }}>
+    <div style={{ width: '100%' }}>
       {showModal && <AddBudgetModal onClose={() => setShowModal(false)} onAdd={handleAdd} />}
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>

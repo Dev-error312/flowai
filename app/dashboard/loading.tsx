@@ -4,7 +4,7 @@ export default function DashboardLoading() {
   )
 
   return (
-    <div style={{ maxWidth: '1200px', fontFamily: 'DM Sans, sans-serif' }}>
+    <div style={{ width: '100%', fontFamily: 'DM Sans, sans-serif' }}>
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
         <Skeleton w="240px" h="1.75rem" radius="8px" />

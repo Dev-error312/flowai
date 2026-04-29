@@ -28,7 +28,7 @@ export default function AnalyticsPage() {
   const avgSavingsRate = (avgSavings / avgIncome) * 100
 
   return (
-    <div style={{ maxWidth: '1100px' }}>
+    <div style={{ width: '100%' }}>
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.75rem', letterSpacing: '-0.03em', color: '#111820', marginBottom: '4px' }}>Analytics</h1>
         <p style={{ color: '#9aaab4', fontSize: '14px' }}>Last 6 months · AI-powered insights</p>

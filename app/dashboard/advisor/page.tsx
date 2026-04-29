@@ -163,7 +163,7 @@ export default function AdvisorPage() {
   }
 
   return (
-    <div style={{ height: 'calc(100vh - 60px - 3rem)', display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
+    <div style={{ height: 'calc(100vh - 60px - 3rem)', display: 'flex', flexDirection: 'column', width: '100%' }}>
       {/* Header */}
       <div style={{ background: 'white', borderRadius: '14px 14px 0 0', padding: '1.1rem 1.4rem', border: '1px solid #e5eaed', borderBottom: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
         <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'linear-gradient(135deg, #9333ea, #0ea5e9)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>

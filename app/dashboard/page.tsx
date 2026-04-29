@@ -103,7 +103,7 @@ export default function DashboardPage() {
   }))
 
   return (
-    <div style={{ maxWidth: '1200px' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       {/* Header */}
       <div style={{ marginBottom: '1.5rem' }}>
         <h1 style={{ fontFamily: 'Syne, sans-serif', fontWeight: 800, fontSize: '1.75rem', letterSpacing: '-0.03em', color: '#111820', marginBottom: '4px' }}>

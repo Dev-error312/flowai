@@ -192,7 +192,7 @@ export default function AccountsPage() {
   const netWorth = totalAssets - totalLiabilities
 
   return (
-    <div style={{ maxWidth: '960px' }}>
+    <div style={{ width: '100%' }}>
       {showModal && <AddAccountModal onClose={() => setShowModal(false)} onAdd={a => setAccounts(p => [...p, a])} />}
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>

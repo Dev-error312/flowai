@@ -158,7 +158,7 @@ export default function TransactionsPage() {
   }
 
   return (
-    <div style={{ maxWidth: '1000px' }}>
+    <div style={{ width: '100%' }}>
       {showModal && <AddTransactionModal onClose={() => setShowModal(false)} onAdd={handleAdd} />}
 
       {/* Header */}
